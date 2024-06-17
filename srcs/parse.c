@@ -17,6 +17,7 @@ void populate_values(t_map *map_data, char **split_input)
 {
 	char **beg_map;
 	char **split_color;
+	size_t	map_lines_count = 0;
 	
 	while (*split_input)
 	{
@@ -88,7 +89,7 @@ t_map *parse_map(char *input)
 		ft_error("Malloc failed");
 
 	populate_values(map_data, split_input);
-
+	return map_data;
 	
 	
 }
@@ -120,5 +121,5 @@ t_map	*handle_input(char *path)
 	input = open_file(path);
 	map_data = parse_map(input);
 		
-	return (map);
+	return (map_data);
 }
