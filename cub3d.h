@@ -6,7 +6,7 @@
 /*   By: bperez-a <bperez-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 12:05:58 by bperez-a          #+#    #+#             */
-/*   Updated: 2024/06/17 13:40:51 by bperez-a         ###   ########.fr       */
+/*   Updated: 2024/06/17 14:15:49 by bperez-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdio.h>
+# include <stdbool.h>
 
 typedef struct s_map
 {
@@ -41,6 +42,8 @@ void	ft_error(char *message);
 
 char	*open_file(char *path);
 t_map	*handle_input(char *path);
+
+bool check_validity(t_map *map_data);
 
 
 #endif

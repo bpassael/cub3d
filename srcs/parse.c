@@ -6,7 +6,7 @@
 /*   By: bperez-a <bperez-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 12:17:24 by bperez-a          #+#    #+#             */
-/*   Updated: 2024/06/17 13:49:20 by bperez-a         ###   ########.fr       */
+/*   Updated: 2024/06/17 14:19:12 by bperez-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,13 @@ void populate_values(t_map *map_data, char **split_input)
 	char **beg_map;
 	char **split_color;
 	size_t	map_lines_count = 0;
+	
+	map_data->floor_color_r = -1;
+	map_data->floor_color_g = -1;
+	map_data->floor_color_b = -1;
+	map_data->ceiling_color_r = -1;
+	map_data->ceiling_color_g = -1;
+	map_data->ceiling_color_b = -1;
 	
 	while (*split_input)
 	{
@@ -32,6 +39,8 @@ void populate_values(t_map *map_data, char **split_input)
 		else if (ft_strncmp(*split_input, "F ", 2) == 0)
 		{
 			split_color = ft_split(*split_input + 2, ',');
+			if (ft_array_len(split_color) != 3)
+				ft_error("Invalid map");
 			map_data->floor_color_r = ft_atoi(split_color[0]);
 			map_data->floor_color_g = ft_atoi(split_color[1]);
 			map_data->floor_color_b = ft_atoi(split_color[2]);
@@ -39,6 +48,8 @@ void populate_values(t_map *map_data, char **split_input)
 		else if (ft_strncmp(*split_input, "C ", 2) == 0)
 		{
 			split_color = ft_split(*split_input + 2, ',');
+			if (ft_array_len(split_color) != 3)
+				ft_error("Invalid map");
 			map_data->ceiling_color_r = ft_atoi(split_color[0]);
 			map_data->ceiling_color_g = ft_atoi(split_color[1]);
 			map_data->ceiling_color_b = ft_atoi(split_color[2]);
