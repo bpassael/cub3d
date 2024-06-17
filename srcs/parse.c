@@ -3,15 +3,49 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bperez-a <bperez-a@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bperez-a <bperez-a@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 12:17:24 by bperez-a          #+#    #+#             */
-/*   Updated: 2024/06/17 14:19:12 by bperez-a         ###   ########.fr       */
+/*   Updated: 2024/06/17 18:28:21 by bperez-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
+
+void replace_spaces(t_map *map_data)
+{
+	char **map;
+	char *line;
+	size_t  max_width = 0;
+
+	map = map_data->map;
+	while (*map)
+	{
+		line = *map;
+		if (ft_strlen(line) > max_width)
+			max_width = ft_strlen(line);
+		while (*line)
+		{
+			if (*line == ' ')
+				*line = '1';
+			line++;
+		}
+		map++;
+	}	
+	map = map_data->map;
+	while (*map)
+	{
+		line = *map;
+		size_t line_len = ft_strlen(line);
+		while (line_len < max_width)
+		{
+			*map = ft_strjoin(*map, "1");
+			line_len++;
+		}
+		map++;
+	}
+}
 
 void populate_values(t_map *map_data, char **split_input)
 {
@@ -75,12 +109,10 @@ void populate_values(t_map *map_data, char **split_input)
 
     map_data->map = (char **)malloc(sizeof(char *) * (map_lines_count + 1));
     if (!map_data->map)
-        return; 
+        ft_error("Malloc failed");
 
     for (size_t i = 0; i < map_lines_count; i++)
-    {
         map_data->map[i] = ft_strdup(beg_map[i]);
-    }
     map_data->map[map_lines_count] = NULL;
 }
 
@@ -131,6 +163,9 @@ t_map	*handle_input(char *path)
 
 	input = open_file(path);
 	map_data = parse_map(input);
-		
+	if (check_validity(map_data) == false)
+		ft_error("Invalid map");
+	replace_spaces(map_data);
+
 	return (map_data);
 }

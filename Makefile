@@ -21,9 +21,9 @@ all: $(OBJ_DIR) $(NAME)
 $(OBJ_DIR):
 	mkdir -p $(OBJ_DIR)
 
-# Compiling the project and linking with libft and mlx_linux to create the executable
+# Compiling the project and linking with libft and GLFW to create the executable
 $(NAME): $(LIBFT_LIB) $(OBJ_FILES)
-	$(CC) $(CFLAGS) -o $(NAME) $(OBJ_FILES) -L$(LIBFT) -lft MLX42/libmlx42.a -Iinclude -ldl -lglfw -pthread -lm
+	$(CC) $(CFLAGS) -o $(NAME) $(OBJ_FILES) -L$(LIBFT) -lft -L/usr/local/lib -lglfw3 -lGL -ldl MLX42/libmlx42.a -Iinclude -pthread -lm
 
 # Rule for making libft
 $(LIBFT_LIB):
@@ -31,7 +31,7 @@ $(LIBFT_LIB):
 
 # Rule for making object files, now looks in src directory and includes header
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c cub3d.h
-	$(CC) $(CFLAGS) -I$(LIBFT) -c $< -o $@
+	$(CC) $(CFLAGS) -I$(LIBFT) -Iinclude -c $< -o $@
 
 # Cleaning up the object files
 clean:

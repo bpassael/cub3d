@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bperez-a <bperez-a@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bperez-a <bperez-a@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 11:45:25 by bperez-a          #+#    #+#             */
-/*   Updated: 2024/06/17 14:14:08 by bperez-a         ###   ########.fr       */
+/*   Updated: 2024/06/17 17:05:03 by bperez-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@ int main(int argc, char **argv)
 	if (argc != 2)
 		ft_error("Invalid number of arguments");
 	map_data = handle_input(argv[1]);
-	if (check_validity(map_data) == false)
-		ft_error("Invalid map");
 	
 
 
