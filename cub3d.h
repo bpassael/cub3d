@@ -21,17 +21,29 @@
 # include <stdio.h>
 # include <stdbool.h>
 
-//Structs
-
-
-typedef struct s_point
+# define WIDTH 800
+# define HEIGHT 600
+//represents a single pixel on screen
+typedef struct s_pixel
 {
 	int		x;
 	int		y;
-	bool	is_wall;
-	bool	is_player;
+	int		color;
 
-}			   t_point;
+}			   t_pixel;
+
+
+//matrix composed of pixels
+//used to draw the field of view of a player
+typedef	struct s_screen_matrix
+{
+	t_pixel	**matrix;
+	int		widht;
+	int 	height;
+
+
+}				t_screen_matrix;
+
 
 
 typedef struct s_map
@@ -53,9 +65,10 @@ typedef struct s_map
 
 typedef struct s_session
 {
-	t_map *map;
-	void  *mlx;
-	void  *mlx_window;
+	t_map			*map;
+	mlx_t 			*mlx;
+	mlx_image_t 	*mlx_window;
+	t_screen_matrix	*matrix;
 
 }				t_session;
 
