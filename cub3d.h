@@ -74,6 +74,10 @@ typedef struct s_session
 
 
 
+//Screen matrix
+t_pixel     **init_pixel_matrix(int width, int height);
+void free_pixel_matrix(t_pixel **matrix, int height);
+
 
 
 //Drawing

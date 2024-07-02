@@ -18,6 +18,10 @@ int main()
 	mlx_t *mlx;
 	mlx_image_t *image;
 
+	t_pixel		**matrix;
+
+	matrix = init_pixel_matrix(WIDTH, HEIGHT);
+
 
 	mlx = mlx_init(WIDTH, HEIGHT,"WINDW", true);
 	image = mlx_new_image(mlx, WIDTH, HEIGHT);
@@ -36,7 +40,11 @@ int main()
 		for (int j = 0; j < WIDTH; j++)
 			mlx_put_pixel(image, j, i, create_trgb(0, 250, 0, 40));
 
+
+	
+
 	mlx_loop(mlx);
 	mlx_terminate(mlx);
+	free_pixel_matrix(matrix, HEIGHT);
 	return (0);
 }
