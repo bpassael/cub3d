@@ -1,3 +1,4 @@
+
 NAME = cub3d
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
@@ -7,44 +8,50 @@ RM = rm -f
 LIBFT = libft
 LIBFT_LIB = $(LIBFT)/libft.a
 
-# Updated source and object files for executable to reflect /src folder
 SRC_DIR = srcs
 SRC_FILES = main.c error.c parse.c checks.c
 SRC_PATHS = $(addprefix $(SRC_DIR)/,$(SRC_FILES))
 OBJ_DIR = obj
 OBJ_FILES = $(SRC_PATHS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 
-# Rule to make everything
+# Update these lines for GLFW and other required libraries
+GLFW_LIB = -lglfw
+GLFW_PATH = /usr/lib/x86_64-linux-gnu
+OPENGL_LIB = -lGL
+MATH_LIB = -lm
+DL_LIB = -ldl
+PTHREAD_LIB = -pthread
+
+# Add this line for X11 library
+X11_LIB = -lX11
+
 all: $(OBJ_DIR) $(NAME)
 
-# Creating the obj directory
 $(OBJ_DIR):
 	mkdir -p $(OBJ_DIR)
 
-# Compiling the project and linking with libft and GLFW to create the executable
 $(NAME): $(LIBFT_LIB) $(OBJ_FILES)
-	$(CC) $(CFLAGS) -o $(NAME) $(OBJ_FILES) -L$(LIBFT) -lft -L/usr/local/lib -lglfw -lGL -ldl MLX42/libmlx42.a -Iinclude -pthread -lm
+	$(CC) $(CFLAGS) -o $(NAME) $(OBJ_FILES) \
+		-L$(LIBFT) -lft \
+		MLX42/libmlx42.a \
+		-L$(GLFW_PATH) $(GLFW_LIB) \
+		$(OPENGL_LIB) $(DL_LIB) $(PTHREAD_LIB) $(MATH_LIB) $(X11_LIB) \
+		-I$(LIBFT) -Iinclude -IMLX42
 
-# Rule for making libft
 $(LIBFT_LIB):
 	$(MAKE) -C $(LIBFT)
 
-# Rule for making object files, now looks in src directory and includes header
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c cub3d.h
-	$(CC) $(CFLAGS) -I$(LIBFT) -Iinclude -c $< -o $@
+	$(CC) $(CFLAGS) -I$(LIBFT) -Iinclude -IMLX42 -c $< -o $@
 
-# Cleaning up the object files
 clean:
 	$(RM) -r $(OBJ_DIR)
 	$(MAKE) clean -C $(LIBFT)
 
-# Full clean (includes the libraries and executable)
 fclean: clean
 	$(RM) $(NAME)
 	$(MAKE) fclean -C $(LIBFT)
 
-# Re-make everything
 re: fclean all
 
-# Prevents issues with make and filenames
 .PHONY: all clean fclean re
