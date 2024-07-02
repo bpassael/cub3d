@@ -21,6 +21,19 @@
 # include <stdio.h>
 # include <stdbool.h>
 
+//Structs
+
+
+typedef struct s_point
+{
+	int		x;
+	int		y;
+	bool	is_wall;
+	bool	is_player;
+
+}			   t_point;
+
+
 typedef struct s_map
 {
 	char		**map;
@@ -34,6 +47,7 @@ typedef struct s_map
 	int			ceiling_color_r;
 	int			ceiling_color_g;
 	int			ceiling_color_b;
+
 	
 }				t_map;
 
@@ -44,6 +58,14 @@ typedef struct s_session
 	void  *mlx_window;
 
 }				t_session;
+
+
+
+
+
+//Drawing
+int	create_trgb(unsigned char t, unsigned char r,
+				unsigned char g, unsigned char b);
 
 
 void	ft_error(char *message);
