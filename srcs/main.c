@@ -18,9 +18,9 @@ int main()
 	mlx_t *mlx;
 	mlx_image_t *image;
 
-	t_pixel		**matrix;
+	t_screen_matrix	*matrix;
 
-	matrix = init_pixel_matrix(WIDTH, HEIGHT);
+	matrix = init_screen_matrix(WIDTH, HEIGHT);
 
 
 	mlx = mlx_init(WIDTH, HEIGHT,"WINDW", true);
@@ -45,6 +45,6 @@ int main()
 
 	mlx_loop(mlx);
 	mlx_terminate(mlx);
-	free_pixel_matrix(matrix, HEIGHT);
+	free_screen_matrix(matrix);
 	return (0);
 }
