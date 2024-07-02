@@ -1,50 +1,31 @@
 NAME = cub3d
+LIBFTDIR = ./libft
+MAKE = make
 CC = cc
-CFLAGS = -Wall -Wextra -Werror
-AR = ar rcs
-RM = rm -f
+CFLAGS = #-Wall -Wextra -Werror 
+HEAD = includes/so_long.h
+LIBMLX = ./MLX42
+SRCS = srcs/main.c
+		
+OBJS = $(SRCS:.c=.o)
 
-LIBFT = libft
-LIBFT_LIB = $(LIBFT)/libft.a
+all : $(NAME)
 
-# Updated source and object files for executable to reflect /src folder
-SRC_DIR = srcs
-SRC_FILES = main.c error.c parse.c checks.c
-SRC_PATHS = $(addprefix $(SRC_DIR)/,$(SRC_FILES))
-OBJ_DIR = obj
-OBJ_FILES = $(SRC_PATHS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
+$(NAME): $(OBJS)
+		@$(MAKE) -C $(LIBFTDIR)
+		@cmake $(LIBMLX) -B $(LIBMLX)/build && make -C $(LIBMLX)/build -j4
+		@$(CC) $(CFLAGS) $(OBJS) $(LIBMLX)/build/libmlx42.a -lglfw -L"/Users/$(USER)/.brew/opt/glfw/lib/" ./libft/libft.a -o $(NAME) 
 
-# Rule to make everything
-all: $(OBJ_DIR) $(NAME)
-
-# Creating the obj directory
-$(OBJ_DIR):
-	mkdir -p $(OBJ_DIR)
-
-# Compiling the project and linking with libft and GLFW to create the executable
-$(NAME): $(LIBFT_LIB) $(OBJ_FILES)
-	$(CC) $(CFLAGS) -o $(NAME) $(OBJ_FILES) -L$(LIBFT) -lft -L/usr/local/lib -lglfw -lGL -ldl MLX42/libmlx42.a -Iinclude -pthread -lm
-
-# Rule for making libft
-$(LIBFT_LIB):
-	$(MAKE) -C $(LIBFT)
-
-# Rule for making object files, now looks in src directory and includes header
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c cub3d.h
-	$(CC) $(CFLAGS) -I$(LIBFT) -Iinclude -c $< -o $@
-
-# Cleaning up the object files
 clean:
-	$(RM) -r $(OBJ_DIR)
-	$(MAKE) clean -C $(LIBFT)
+		@rm -f $(OBJS)
+		@$(MAKE) clean -C $(LIBFTDIR)
+		@rm -rf $(LIBMLX)/build
 
-# Full clean (includes the libraries and executable)
 fclean: clean
-	$(RM) $(NAME)
-	$(MAKE) fclean -C $(LIBFT)
+		@rm -f $(NAME)
+		@rm -f libft.a
+		@$(MAKE) fclean -C $(LIBFTDIR)
 
-# Re-make everything
 re: fclean all
 
-# Prevents issues with make and filenames
 .PHONY: all clean fclean re
