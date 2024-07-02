@@ -23,7 +23,7 @@ $(OBJ_DIR):
 
 # Compiling the project and linking with libft and GLFW to create the executable
 $(NAME): $(LIBFT_LIB) $(OBJ_FILES)
-	$(CC) $(CFLAGS) -o $(NAME) $(OBJ_FILES) -L$(LIBFT) -lft -L/usr/local/lib -lglfw3 -lGL -ldl MLX42/libmlx42.a -Iinclude -pthread -lm
+	$(CC) $(CFLAGS) -o $(NAME) $(OBJ_FILES) -L$(LIBFT) -lft -L/usr/local/lib -lglfw -lGL -ldl MLX42/libmlx42.a -Iinclude -pthread -lm
 
 # Rule for making libft
 $(LIBFT_LIB):

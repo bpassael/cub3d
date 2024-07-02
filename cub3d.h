@@ -37,6 +37,14 @@ typedef struct s_map
 	
 }				t_map;
 
+typedef struct s_session
+{
+	t_map *map;
+	void  *mlx;
+	void  *mlx_window;
+
+}				t_session;
+
 
 void	ft_error(char *message);
 
