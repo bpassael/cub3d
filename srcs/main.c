@@ -21,28 +21,14 @@ int main()
 	t_screen_matrix	*matrix;
 
 	matrix = init_screen_matrix(WIDTH, HEIGHT);
-
-
 	mlx = mlx_init(WIDTH, HEIGHT,"WINDW", true);
 	image = mlx_new_image(mlx, WIDTH, HEIGHT);
 	mlx_image_to_window(mlx, image, 0, 0);
 
-	for (int i = 0; i < HEIGHT / 4; i++)
-		for (int j = 0; j < WIDTH; j++)
-			mlx_put_pixel(image, j, i, create_trgb(0, 0 , 255, 100));
 
-	for (int i = HEIGHT / 4; i <  HEIGHT / 2; i++)
-		for (int j = 0; j < WIDTH; j++)
-			mlx_put_pixel(image, j, i,create_trgb(0, 100, 100, 100) );
-
+	fill_screen_with_initial_view(matrix);
+	display_screen(matrix, image);
 	
-	for (int i = HEIGHT / 2; i <  HEIGHT; i++)
-		for (int j = 0; j < WIDTH; j++)
-			mlx_put_pixel(image, j, i, create_trgb(0, 250, 0, 40));
-
-
-	
-
 	mlx_loop(mlx);
 	mlx_terminate(mlx);
 	free_screen_matrix(matrix);
