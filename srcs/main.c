@@ -6,14 +6,14 @@
 /*   By: bperez-a <bperez-a@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 11:45:25 by bperez-a          #+#    #+#             */
-/*   Updated: 2024/07/02 18:28:28 by bperez-a         ###   ########.fr       */
+/*   Updated: 2024/07/09 12:08:09 by bperez-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
 
-int main()
+int main(int argc, char **argv)
 {
 	mlx_t *mlx;
 	mlx_image_t *image;
@@ -42,6 +42,12 @@ int main()
 
 
 	
+	t_map *map = handle_input(argv[1]);
+	printf("Map:\n");
+	for (int i = 0; map->map[i] != NULL; i++)
+		printf("%s\n", map->map[i]);
+
+
 
 	mlx_loop(mlx);
 	mlx_terminate(mlx);
