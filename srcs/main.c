@@ -13,6 +13,7 @@
 #include "../cub3d.h"
 
 
+
 int main(int argc, char **argv)
 {
 	mlx_t *mlx;
@@ -26,12 +27,15 @@ int main(int argc, char **argv)
 	mlx_image_to_window(mlx, image, 0, 0);
 
 
-	
-
 	t_map *map_data = handle_input(argv[1]);
+	init_player_in_map(map_data);
 
-	fill_screen_with_initial_view(matrix, map_data);
+
+	update_screen(matrix, map_data);
 	display_screen(matrix, image);
+
+
+
 
 	printf("%f distance to wall\n", compute_distance_to_wall(map_data));
 	printf("Map:\n");

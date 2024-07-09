@@ -5,13 +5,12 @@
 double compute_distance_to_wall(t_map *map)
 {
     double distance;
-
-    //hardcoded wall coordinates
-
-    int x_wall = map->player_x;
-    int y_wall = 0;
-
-    distance = pow((map->player_x - x_wall), 2) + pow((map->player_y - y_wall), 2);
+    
+    double x_wall = map->player->x_pos;
+    //hardcoded for now
+    double y_wall = 0.0;
+    
+    distance = pow((map->player->x_pos - x_wall), 2) + pow((map->player->y_pos - y_wall), 2);
     distance = sqrt(distance);
 
     return distance;

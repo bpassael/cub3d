@@ -24,6 +24,10 @@
 
 # define WIDTH 800
 # define HEIGHT 600
+# define MOVE_STEP 0.1
+# define ROTAT_STEP 0.02
+# define PI 3.14159265
+
 
 
 //represents a single pixel on screen
@@ -49,6 +53,21 @@ typedef	struct s_screen_matrix
 }				t_screen_matrix;
 
 
+typedef struct s_player
+{
+	double	x_pos;
+	double	y_pos;
+
+	double	move_step;
+	double	rotat_step;
+
+	double	fow;
+	double	angle_deg;
+	double	angle_rad;
+
+}			t_player;
+
+
 
 typedef struct s_map
 {
@@ -65,6 +84,7 @@ typedef struct s_map
 	int			ceiling_color_b;
 	int			player_x;
 	int			player_y;
+	t_player	*player;
 
 	
 }				t_map;
@@ -81,12 +101,17 @@ typedef struct s_session
 
 
 //Screen matrix
+
 t_pixel     **init_pixel_matrix(int width, int height);
 void free_pixel_matrix(t_pixel **matrix, int height);
 t_screen_matrix *init_screen_matrix(int width, int height);
 void    display_screen(t_screen_matrix *matrix, mlx_image_t *image);
-void    fill_screen_with_initial_view(t_screen_matrix *matrix, t_map *map);
+void    update_screen(t_screen_matrix *matrix, t_map *map);
+void    init_player_in_map(t_map *map);
 
+//Movement
+void    move_player_y_pos(t_player *player);
+void    move_player_y_neg(t_player *player);
 
 
 
