@@ -26,14 +26,14 @@ t_pixel     **init_pixel_matrix(int width, int height)
     return (matrix);
 };
 
-t_screen_matrix *init_screen_matrix(int widht, int height)
+t_screen_matrix *init_screen_matrix(int width, int height)
 {
     t_screen_matrix *screen_matrix;
 
     screen_matrix = (t_screen_matrix *) malloc(sizeof(t_screen_matrix));
     
-    screen_matrix->matrix = init_pixel_matrix(widht, height);
-    screen_matrix->widht = widht;
+    screen_matrix->matrix = init_pixel_matrix(width, height);
+    screen_matrix->width = width;
     screen_matrix->height = height;
 
     return (screen_matrix);
@@ -61,4 +61,42 @@ void    free_screen_matrix(t_screen_matrix *matrix)
 {
     free_pixel_matrix(matrix->matrix, matrix->height);
     free(matrix);
+};
+
+
+void    display_screen(t_screen_matrix *matrix, mlx_image_t *image)
+{
+    for (int i = 0; i < matrix->height; i++)
+		for (int j = 0; j < matrix->width; j++)
+			mlx_put_pixel(image, matrix->matrix[i][j].x,
+								matrix->matrix[i][j].y,
+								matrix->matrix[i][j].color);
+};
+
+
+void    fill_screen_with_initial_view(t_screen_matrix *matrix)
+{
+    for (int i = 0; i < matrix->height / 4; i++)
+		for (int j = 0; j < matrix->width; j++)
+        {
+            matrix->matrix[i][j].x = j;
+            matrix->matrix[i][j].y = i;
+            matrix->matrix[i][j].color = create_trgb(0, 0 , 255, 100);
+        }
+        
+	for (int i = matrix->height / 4; i <  matrix->height / 2; i++)
+		for (int j = 0; j < matrix->width; j++)
+        {
+            matrix->matrix[i][j].x = j;
+            matrix->matrix[i][j].y = i;
+            matrix->matrix[i][j].color = create_trgb(0, 100, 100, 100);
+        }
+		
+	for (int i = matrix->height / 2; i <   matrix->height; i++)
+		for (int j = 0; j < matrix->width; j++)
+        {
+            matrix->matrix[i][j].x = j;
+            matrix->matrix[i][j].y = i;
+            matrix->matrix[i][j].color = create_trgb(0, 250, 0, 40);
+        }
 };

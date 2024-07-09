@@ -23,6 +23,8 @@
 
 # define WIDTH 800
 # define HEIGHT 600
+
+
 //represents a single pixel on screen
 typedef struct s_pixel
 {
@@ -35,10 +37,11 @@ typedef struct s_pixel
 
 //matrix composed of pixels
 //used to draw the field of view of a player
+
 typedef	struct s_screen_matrix
 {
 	t_pixel	**matrix;
-	int		widht;
+	int		width;
 	int 	height;
 
 
@@ -79,7 +82,11 @@ typedef struct s_session
 //Screen matrix
 t_pixel     **init_pixel_matrix(int width, int height);
 void free_pixel_matrix(t_pixel **matrix, int height);
-t_screen_matrix *init_screen_matrix(int widht, int height);
+t_screen_matrix *init_screen_matrix(int width, int height);
+void    fill_screen_with_initial_view(t_screen_matrix *matrix);
+void    display_screen(t_screen_matrix *matrix, mlx_image_t *image);
+
+
 
 void    free_screen_matrix(t_screen_matrix *matrix);
 
