@@ -8,7 +8,8 @@ LIBFT = libft
 LIBFT_LIB = $(LIBFT)/libft.a
 
 SRC_DIR = srcs
-SRC_FILES = main.c error.c parse.c checks.c drawing.c
+SRC_FILES = main.c error.c parse.c checks.c drawing.c \
+			screen_matrix_utils.c
 SRC_PATHS = $(addprefix $(SRC_DIR)/,$(SRC_FILES))
 OBJ_DIR = obj
 OBJ_FILES = $(SRC_PATHS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
