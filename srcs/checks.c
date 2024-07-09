@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checks.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bperez-a <bperez-a@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bperez-a <bperez-a@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 14:11:58 by bperez-a          #+#    #+#             */
-/*   Updated: 2024/06/17 15:13:26 by bperez-a         ###   ########.fr       */
+/*   Updated: 2024/07/09 12:45:48 by bperez-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,25 +21,25 @@ bool is_enclosed(char **map, int i, int j)
 }
 
 
-bool check_map(char **map)
+bool check_map(t_map *map_data)
 {
     int i, j;
     int player_count = 0;
 
     // Iterate through each line of the map
-    for (i = 0; map[i] != NULL; i++)
+    for (i = 0; map_data->map[i] != NULL; i++)
     {
         // Check for an empty line
-        if (ft_strlen(map[i]) == 0)
+        if (ft_strlen(map_data->map[i]) == 0)
 		{
 			printf("Empty line\n");
             return false;
 		}
 
         // Check each character in the line
-        for (j = 0; map[i][j] != '\0'; j++)
+        for (j = 0; map_data->map[i][j] != '\0'; j++)
         {
-            char c = map[i][j];
+            char c = map_data->map[i][j];
 
             // Check for valid symbols
             if (c != '1' && c != '0' && c != ' ' && c != 'N' && c != 'S' && c != 'E' && c != 'W')
@@ -50,10 +50,14 @@ bool check_map(char **map)
 
             // Count player positions
             if (c == 'N' || c == 'S' || c == 'E' || c == 'W')
+			{
+				map_data->player_x = j;
+				map_data->player_y = i;
                 player_count++;
+			}
 
             // Check surrounded by walls
-			if (c == '0' && is_enclosed(map, i, j) == false)
+			if (c == '0' && is_enclosed(map_data->map, i, j) == false)
 			{
 				printf("Not enclosed by walls\n");
 				return false;
@@ -92,7 +96,7 @@ bool	check_values(t_map *map_data)
 
 bool	check_validity(t_map *map_data)
 {
-	if (check_values(map_data) == false || check_map(map_data->map) == false)
+	if (check_values(map_data) == false || check_map(map_data) == false)
 		return (false);
 	return (true);
 }

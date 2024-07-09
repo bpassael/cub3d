@@ -6,7 +6,7 @@
 /*   By: bperez-a <bperez-a@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 11:45:25 by bperez-a          #+#    #+#             */
-/*   Updated: 2024/07/09 12:08:09 by bperez-a         ###   ########.fr       */
+/*   Updated: 2024/07/09 12:45:09 by bperez-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ int main(int argc, char **argv)
 	printf("Map:\n");
 	for (int i = 0; map->map[i] != NULL; i++)
 		printf("%s\n", map->map[i]);
+	printf("Player position: %d, %d\n", map->player_x, map->player_y);
 
 
 
