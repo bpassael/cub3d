@@ -31,6 +31,7 @@ int main(int argc, char **argv)
 
 	t_map *map_data = handle_input(argv[1]);
 
+	printf("%f distance to wall\n", compute_distance_to_wall(map_data));
 	printf("Map:\n");
 	for (int i = 0; map_data->map[i] != NULL; i++)
 		printf("%s\n", map_data->map[i]);

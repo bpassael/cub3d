@@ -20,6 +20,7 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include <stdbool.h>
+# include <math.h>
 
 # define WIDTH 800
 # define HEIGHT 600
@@ -89,6 +90,9 @@ void    display_screen(t_screen_matrix *matrix, mlx_image_t *image);
 
 
 void    free_screen_matrix(t_screen_matrix *matrix);
+
+//basic raycasting utils
+double compute_distance_to_wall(t_map *map);
 
 
 
