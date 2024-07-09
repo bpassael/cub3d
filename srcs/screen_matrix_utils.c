@@ -127,29 +127,3 @@ void    fill_screen_with_initial_view(t_screen_matrix *matrix, t_map *map)
     printf("DONE initializing\n");
 
 }
-// void    fill_screen_with_initial_view(t_screen_matrix *matrix)
-// {
-//     for (int i = 0; i < matrix->height / 4; i++)
-// 		for (int j = 0; j < matrix->width; j++)
-//         {
-//             matrix->matrix[i][j].x = j;
-//             matrix->matrix[i][j].y = i;
-//             matrix->matrix[i][j].color = create_trgb(0, 0 , 255, 100);
-//         }
-        
-// 	for (int i = matrix->height / 4; i <  matrix->height / 2; i++)
-// 		for (int j = 0; j < matrix->width; j++)
-//         {
-//             matrix->matrix[i][j].x = j;
-//             matrix->matrix[i][j].y = i;
-//             matrix->matrix[i][j].color = create_trgb(0, 100, 100, 100);
-//         }
-		
-// 	for (int i = matrix->height / 2; i <   matrix->height; i++)
-// 		for (int j = 0; j < matrix->width; j++)
-//         {
-//             matrix->matrix[i][j].x = j;
-//             matrix->matrix[i][j].y = i;
-//             matrix->matrix[i][j].color = create_trgb(0, 250, 0, 40);
-//         }
-// };
