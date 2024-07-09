@@ -6,7 +6,7 @@
 /*   By: bperez-a <bperez-a@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 11:45:25 by bperez-a          #+#    #+#             */
-/*   Updated: 2024/07/09 12:48:35 by bperez-a         ###   ########.fr       */
+/*   Updated: 2024/07/09 12:50:09 by bperez-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,13 @@ int main(int argc, char **argv)
 
 	fill_screen_with_initial_view(matrix);
 	display_screen(matrix, image);
+
+	t_map *map_data = handle_input(argv[1]);
+
+	printf("Map:\n");
+	for (int i = 0; map_data->map[i] != NULL; i++)
+		printf("%s\n", map_data->map[i]);
+	printf("Player position: %d, %d\n", map_data->player_x, map_data->player_y);
 	
 	mlx_loop(mlx);
 	mlx_terminate(mlx);
