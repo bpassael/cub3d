@@ -73,7 +73,7 @@ void    display_screen(t_screen_matrix *matrix, mlx_image_t *image)
 								matrix->matrix[i][j].color);
 };
 
-void    fill_screen_with_initial_view(t_screen_matrix *matrix, t_map *map)
+void    update_screen(t_screen_matrix *matrix, t_map *map)
 {
     int line_height;
     double wall_distance;
@@ -124,6 +124,6 @@ void    fill_screen_with_initial_view(t_screen_matrix *matrix, t_map *map)
             matrix->matrix[i][j].y = i;
             matrix->matrix[i][j].color = create_trgb(0, 250, 0, 40);
         };
-    printf("DONE initializing\n");
+    printf("DONE update\n");
 
 }

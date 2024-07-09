@@ -106,9 +106,12 @@ t_pixel     **init_pixel_matrix(int width, int height);
 void free_pixel_matrix(t_pixel **matrix, int height);
 t_screen_matrix *init_screen_matrix(int width, int height);
 void    display_screen(t_screen_matrix *matrix, mlx_image_t *image);
-void    fill_screen_with_initial_view(t_screen_matrix *matrix, t_map *map);
-
+void    update_screen(t_screen_matrix *matrix, t_map *map);
 void    init_player_in_map(t_map *map);
+
+//Movement
+void    move_player_y_pos(t_player *player);
+void    move_player_y_neg(t_player *player);
 
 
 
