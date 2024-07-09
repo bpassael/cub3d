@@ -34,6 +34,9 @@ int main(int argc, char **argv)
 	update_screen(matrix, map_data);
 	display_screen(matrix, image);
 
+
+
+
 	printf("%f distance to wall\n", compute_distance_to_wall(map_data));
 	printf("Map:\n");
 	for (int i = 0; map_data->map[i] != NULL; i++)
