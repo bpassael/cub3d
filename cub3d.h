@@ -22,9 +22,9 @@
 # include <stdbool.h>
 # include <math.h>
 
-# define WIDTH 800
-# define HEIGHT 600
-# define MOVE_STEP 0.1
+# define WIDTH 1200
+# define HEIGHT 800
+# define MOVE_STEP 0.2
 # define ROTAT_STEP 0.02
 # define PI 3.14159265
 
@@ -49,8 +49,13 @@ typedef	struct s_screen_matrix
 	int		width;
 	int 	height;
 
+	//need for raycast loop
+	int		x_scr;
+	int		y_scr;
+
 
 }				t_screen_matrix;
+
 
 
 typedef struct s_player
@@ -61,9 +66,23 @@ typedef struct s_player
 	double	move_step;
 	double	rotat_step;
 
-	double	fow;
 	double	angle_deg;
 	double	angle_rad;
+
+
+	//raycasting stuff
+	double	fow;
+	double	camera_x;
+	double	plane_x;
+	double	plane_y;
+	double	ray_dir_x;
+	double	ray_dir_y;
+	double	dir_x;
+	double	dir_y;
+	int		step_x;
+	int		step_y;
+	double	side_dist_x;
+	double	side_dist_y;
 
 }			t_player;
 
@@ -88,6 +107,8 @@ typedef struct s_map
 
 	
 }				t_map;
+
+
 
 typedef struct s_session
 {
