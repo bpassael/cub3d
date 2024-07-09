@@ -73,30 +73,83 @@ void    display_screen(t_screen_matrix *matrix, mlx_image_t *image)
 								matrix->matrix[i][j].color);
 };
 
-
-void    fill_screen_with_initial_view(t_screen_matrix *matrix)
+void    fill_screen_with_initial_view(t_screen_matrix *matrix, t_map *map)
 {
-    for (int i = 0; i < matrix->height / 4; i++)
-		for (int j = 0; j < matrix->width; j++)
+    int line_height;
+    double wall_distance;
+
+    int wall_start;
+    int wall_end;
+
+    int i;
+    int j;
+
+    wall_distance = compute_distance_to_wall(map);
+
+    printf("Distance to wall: %f\n", wall_distance);
+
+
+    line_height = matrix->height / wall_distance;
+
+    printf("Line height: %d\n", line_height);
+    wall_start = matrix->height / 2  - line_height / 2;
+    wall_end = matrix->height / 2 + line_height / 2;
+
+    printf("Wall start: %d\n", wall_start);
+    printf("Wall end: %d\n", wall_end);
+
+    //draw sky first
+    for ( i = 0; i < matrix->height; i++)
+        for (j = 0; j < matrix->width; j++)
         {
             matrix->matrix[i][j].x = j;
             matrix->matrix[i][j].y = i;
             matrix->matrix[i][j].color = create_trgb(0, 0 , 255, 100);
         }
-        
-	for (int i = matrix->height / 4; i <  matrix->height / 2; i++)
-		for (int j = 0; j < matrix->width; j++)
+    
+    //draw wall
+    for ( i = wall_start; i < wall_end; i++)
+        for (j = 0; j < matrix->width; j++)
         {
             matrix->matrix[i][j].x = j;
             matrix->matrix[i][j].y = i;
             matrix->matrix[i][j].color = create_trgb(0, 100, 100, 100);
-        }
-		
-	for (int i = matrix->height / 2; i <   matrix->height; i++)
-		for (int j = 0; j < matrix->width; j++)
+        };
+
+    //draw floor
+    for ( i = wall_end; i < matrix->height; i++)
+        for (j = 0; j < matrix->width; j++)
         {
             matrix->matrix[i][j].x = j;
             matrix->matrix[i][j].y = i;
             matrix->matrix[i][j].color = create_trgb(0, 250, 0, 40);
-        }
-};
+        };
+    printf("DONE initializing\n");
+
+}
+// void    fill_screen_with_initial_view(t_screen_matrix *matrix)
+// {
+//     for (int i = 0; i < matrix->height / 4; i++)
+// 		for (int j = 0; j < matrix->width; j++)
+//         {
+//             matrix->matrix[i][j].x = j;
+//             matrix->matrix[i][j].y = i;
+//             matrix->matrix[i][j].color = create_trgb(0, 0 , 255, 100);
+//         }
+        
+// 	for (int i = matrix->height / 4; i <  matrix->height / 2; i++)
+// 		for (int j = 0; j < matrix->width; j++)
+//         {
+//             matrix->matrix[i][j].x = j;
+//             matrix->matrix[i][j].y = i;
+//             matrix->matrix[i][j].color = create_trgb(0, 100, 100, 100);
+//         }
+		
+// 	for (int i = matrix->height / 2; i <   matrix->height; i++)
+// 		for (int j = 0; j < matrix->width; j++)
+//         {
+//             matrix->matrix[i][j].x = j;
+//             matrix->matrix[i][j].y = i;
+//             matrix->matrix[i][j].color = create_trgb(0, 250, 0, 40);
+//         }
+// };

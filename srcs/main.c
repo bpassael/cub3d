@@ -26,10 +26,12 @@ int main(int argc, char **argv)
 	mlx_image_to_window(mlx, image, 0, 0);
 
 
-	fill_screen_with_initial_view(matrix);
-	display_screen(matrix, image);
+	
 
 	t_map *map_data = handle_input(argv[1]);
+
+	fill_screen_with_initial_view(matrix, map_data);
+	display_screen(matrix, image);
 
 	printf("%f distance to wall\n", compute_distance_to_wall(map_data));
 	printf("Map:\n");
