@@ -99,12 +99,12 @@ void    update_screen(t_screen_matrix *matrix, t_map *map)
     printf("Wall end: %d\n", wall_end);
 
     //draw sky first
-    for ( i = 0; i < matrix->height; i++)
+    for ( i = 0; i < wall_start; i++)
         for (j = 0; j < matrix->width; j++)
         {
             matrix->matrix[i][j].x = j;
             matrix->matrix[i][j].y = i;
-            matrix->matrix[i][j].color = create_trgb(0, 0 , 255, 100);
+            matrix->matrix[i][j].color = create_trgb(0, 100, 200, 100);
         }
     
     //draw wall
@@ -113,7 +113,7 @@ void    update_screen(t_screen_matrix *matrix, t_map *map)
         {
             matrix->matrix[i][j].x = j;
             matrix->matrix[i][j].y = i;
-            matrix->matrix[i][j].color = create_trgb(0, 100, 100, 100);
+            matrix->matrix[i][j].color = create_trgb(100, 255 , 255, 0);
         };
 
     //draw floor
