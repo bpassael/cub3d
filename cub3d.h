@@ -6,7 +6,7 @@
 /*   By: bperez-a <bperez-a@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 12:05:58 by bperez-a          #+#    #+#             */
-/*   Updated: 2024/07/09 12:42:08 by bperez-a         ###   ########.fr       */
+/*   Updated: 2024/07/11 13:40:18 by bperez-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,9 +103,10 @@ typedef struct s_map
 	int			ceiling_color_b;
 	int			player_x;
 	int			player_y;
+	char		player_dir;
 	t_player	*player;
 
-	
+
 }				t_map;
 
 

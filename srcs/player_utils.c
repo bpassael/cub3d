@@ -4,7 +4,7 @@ void    init_player_in_map(t_map *map)
 {
     t_player    *player_data;
 
-    //allocate memory 
+    //allocate memory
     player_data = (t_player *) malloc(sizeof(t_player));
 
     if (player_data == NULL)
@@ -20,6 +20,15 @@ void    init_player_in_map(t_map *map)
     player_data->angle_deg = 90;
     player_data->angle_rad = (player_data->angle_deg * PI) / 180;
     player_data->move_step = ROTAT_STEP;
+
+	if (map->player_dir == 'N')
+		map->player->angle_deg = 90;
+	else if (map->player_dir == 'S')
+		map->player->angle_deg = 270;
+	else if (map->player_dir == 'E')
+		map->player->angle_deg = 360;
+	else if (map->player_dir == 'W')
+		map->player->angle_deg = 180;
 
     map->player = player_data;
 
