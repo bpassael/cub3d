@@ -65,20 +65,25 @@ typedef struct s_player
 
 	double	move_step;
 	double	rotat_step;
-
 	double	angle_deg;
 	double	angle_rad;
 
 
-	//raycasting stuff
+	/*RAYCASTING STUFF*/
 	double	fow;
-	double	camera_x;
-	double	plane_x;
-	double	plane_y;
-	double	ray_dir_x;
-	double	ray_dir_y;
+	double	camera_x; //camera X is single x coordinate along plane line
+	double	plane_x; //2D version of of camera plane. (plane vector)
+	double	plane_y; //plane vector is always orthogonal to dir vector
+
+	//initial ray/player direction
 	double	dir_x;
 	double	dir_y;
+
+	//raydir that we changer during raycast
+	double	ray_dir_x;
+	double	ray_dir_y;
+	
+	
 	int		step_x;
 	int		step_y;
 	double	side_dist_x;
