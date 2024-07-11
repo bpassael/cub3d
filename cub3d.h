@@ -88,9 +88,11 @@ typedef struct s_player
 	int		step_y;
 	double	side_dist_x;
 	double	side_dist_y;
+	double	delta_dist_x;
+	double	delta_dist_y;
 	
-	double	map_x; //which square or ray is in
-	double	map_y; // for now
+	int	map_x; //which square or ray is in
+	int	map_y; // for now
 
 }			t_player;
 
@@ -148,6 +150,7 @@ void    free_screen_matrix(t_screen_matrix *matrix);
 
 //basic raycasting utils
 double compute_distance_to_wall(t_map *map);
+void    raycast(t_map *map, t_screen_matrix *matrix, t_session *session);
 
 
 
