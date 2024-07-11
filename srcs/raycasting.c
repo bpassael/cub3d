@@ -28,6 +28,45 @@ void    compute_ray_direction(t_map *map, t_screen_matrix *matrix)
 };
 
 
+void    dda_compute_steps(t_map *map, t_screen_matrix *matrix)
+{
+    double  delta_dist_x;
+    double  delta_dist_y;
+
+    delta_dist_x = fabs(1 / map->player->ray_dir_x);
+    delta_dist_y = fabs(1 / map->player->ray_dir_y);
+
+    map->player->map_x = (int)map->player->x_pos;
+    map->player->map_y = (int)map->player->y_pos;
+    
+
+    //which direction on x axis to choose
+    if (map->player->ray_dir_x < 0)
+    {
+        map->player->step_x = -1;
+        map->player->side_dist_x = (map->player->x_pos - map->player->map_x) * delta_dist_x;
+    }
+    else
+    {
+        map->player->step_x = 1;
+        map->player->side_dist_x = (map->player->map_x + 1 - map->player->x_pos) * delta_dist_x;
+    }
+    //which direction on y axis to choose
+    if (map->player->ray_dir_y < 0)
+    {
+        map->player->step_y = -1;
+        map->player->side_dist_y = (map->player->y_pos - map->player->map_y) * delta_dist_y;
+    }
+    else
+    {  
+        map->player->step_y = 1;
+        map->player->side_dist_y = (map->player->map_y + 1 - map->player->y_pos) * delta_dist_y;
+    }
+
+
+
+};
+
 void    raycast(t_map *map, t_screen_matrix *matrix)
 {   
     matrix->x_scr = 0;
@@ -35,6 +74,7 @@ void    raycast(t_map *map, t_screen_matrix *matrix)
     {
         /* raycast loop */
         compute_ray_direction(map, matrix);
+        dda_compute_steps(map, matrix);
 
         matrix->x_scr++;
     }

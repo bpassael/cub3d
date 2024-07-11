@@ -83,11 +83,14 @@ typedef struct s_player
 	double	ray_dir_x;
 	double	ray_dir_y;
 	
-	
+	//DDA stuff
 	int		step_x;
 	int		step_y;
 	double	side_dist_x;
 	double	side_dist_y;
+	
+	double	map_x; //which square or ray is in
+	double	map_y; // for now
 
 }			t_player;
 
