@@ -21,6 +21,13 @@ void    init_player_in_map(t_map *map)
     player_data->angle_rad = (player_data->angle_deg * PI) / 180;
     player_data->move_step = ROTAT_STEP;
 
+    //Hardocded for now
+    player_data->dir_x = -1;
+    player_data->dir_y = 0;
+
+    player_data->plane_x = 0;
+    player_data->plane_y = 0.66;
+
     map->player = player_data;
 
 };
