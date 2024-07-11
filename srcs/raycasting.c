@@ -17,8 +17,11 @@ double compute_distance_to_wall(t_map *map)
 };
 
 void    compute_ray_direction(t_map *map, t_screen_matrix *matrix)
-{
-    map->player->camera_x = (2 * map->player->x_pos) / matrix->x_scr;
+{  
+    //compute x coord for camera vector
+    map->player->camera_x = ((2 * map->player->x_pos) / matrix->width) - 1;
+
+    //compute direction vector
     map->player->ray_dir_x = map->player->dir_x + map->player->plane_x * map->player->camera_x;
     map->player->ray_dir_y = map->player->dir_y + map->player->plane_y * map->player->camera_x;
 
@@ -30,7 +33,9 @@ void    raycast(t_map *map, t_screen_matrix *matrix)
     matrix->x_scr = 0;
     while (matrix->x_scr < WIDTH)
     {
-        /* raycast */
+        /* raycast loop */
+        compute_ray_direction(map, matrix);
+
         matrix->x_scr++;
     }
     
