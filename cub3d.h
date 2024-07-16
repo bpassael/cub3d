@@ -86,6 +86,7 @@ typedef struct s_player
 	//DDA stuff
 	int		step_x;
 	int		step_y;
+	int		side;
 	double	side_dist_x;
 	double	side_dist_y;
 	double	delta_dist_x;
