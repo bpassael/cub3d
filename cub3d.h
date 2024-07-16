@@ -22,9 +22,9 @@
 # include <stdbool.h>
 # include <math.h>
 
-# define WIDTH 1200
-# define HEIGHT 800
-# define MOVE_STEP 0.2
+# define WIDTH 1800
+# define HEIGHT 1090
+# define MOVE_STEP 0.05
 # define ROTAT_STEP 0.02
 # define PI 3.14159265
 
