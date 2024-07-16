@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bperez-a <bperez-a@student.42bangkok.co    +#+  +:+       +#+        */
+/*   By: bperez-a <bperez-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 11:45:25 by bperez-a          #+#    #+#             */
-/*   Updated: 2024/07/11 14:31:30 by bperez-a         ###   ########.fr       */
+/*   Updated: 2024/07/16 09:49:34 by bperez-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,12 +75,12 @@ int main(int argc, char **argv)
 
 
 	t_map *map_data = handle_input(argv[1]);
+	
 	init_player_in_map(map_data);
 
 
 	update_screen(matrix, map_data);
 	display_screen(matrix, image);
-
 
 	t_session *session = malloc(sizeof(t_session));
 	session->mlx = mlx;

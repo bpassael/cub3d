@@ -12,21 +12,21 @@ void    init_player_in_map(t_map *map)
         ft_error("Malloc failed in player init");
         return ;
     }
-
     player_data->x_pos = map->player_x;
     player_data->y_pos = map->player_y;
     player_data->move_step = MOVE_STEP;
     player_data->rotat_step = ROTAT_STEP;
 
 	if (map->player_dir == 'N')
-		map->player->angle_deg = 90;
+		player_data->angle_deg = 90;
 	else if (map->player_dir == 'S')
-		map->player->angle_deg = 270;
+		player_data->angle_deg = 270;
 	else if (map->player_dir == 'E')
-		map->player->angle_deg = 360;
+		player_data->angle_deg = 360;
 	else if (map->player_dir == 'W')
-		map->player->angle_deg = 180;
-	player_data->angle_rad = (player_data->angle_deg * PI) / 180;
+		player_data->angle_deg = 180;
+
+	player_data->angle_rad = player_data->angle_deg * (PI / 180);
 
     map->player = player_data;
 
