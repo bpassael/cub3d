@@ -80,6 +80,7 @@ void	compute_wall_height(t_session *session, t_player *player)
 		player->wall_dist = (player->side_dist_y - player->delta_dist_y);
 	
 	wall_height = (int)(HEIGHT / player->wall_dist);
+	printf("Wall distance %f \n", player->wall_dist);
 	session->matrix->start_draw = HEIGHT / 2  - wall_height / 2;
 	session->matrix->end_draw = HEIGHT / 2  + wall_height / 2;
 	if (session->matrix->end_draw >= HEIGHT)
@@ -92,6 +93,8 @@ void	compute_wall_height(t_session *session, t_player *player)
 };
 
 
+
+//Doesnt work correclty
 void	draw_stripe(t_session *session)
 {
     int x_scr;
@@ -99,9 +102,21 @@ void	draw_stripe(t_session *session)
 	int draw_start;
 	int draw_end;
 
+	x_scr = session->matrix->x_scr;
+
+	printf("x_scr = %d\n", x_scr);
+	printf("start draw - %d\n", session->matrix->start_draw);
 	draw_start = session->matrix->start_draw;
 	draw_end = session->matrix->end_draw;
 	
+	if (draw_start < 0)
+		draw_start = 0;
+	if (draw_end > HEIGHT)
+		draw_end = HEIGHT - 1;
+	
+	session->matrix->start_draw = draw_start;
+	session->matrix->end_draw = draw_end;
+
     x_scr = session->matrix->x_scr;
 
     //draw sky first
@@ -135,19 +150,22 @@ void	draw_stripe(t_session *session)
 void	raycast(t_session *session)
 {
 	session->matrix->x_scr = 0;
+	printf("raycast called\n");
 
 	while (session->matrix->x_scr < WIDTH)
 	{
+		
 		init_raycast_data(session->map->player, session->matrix->x_scr);
 		determine_dda_dir(session->map->player);
 		perform_dda(session->map->player, session->map);
 
+		
 		compute_wall_height(session, session->map->player);
 		draw_stripe(session);
 
 		session->matrix->x_scr++;
 
 	}
-	
-
+	printf("Player position (%f, %f)\n", session->map->player->x_pos,
+	session->map->player->y_pos);
 };
