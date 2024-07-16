@@ -141,6 +141,7 @@ void    display_screen(t_screen_matrix *matrix, mlx_image_t *image);
 void    update_screen(t_screen_matrix *matrix, t_map *map);
 void    init_player_in_map(t_map *map);
 void	rotate_player_left(t_player *player);
+void	rotate_player_right(t_player *player);
 
 
 //Movement
