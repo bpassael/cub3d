@@ -168,6 +168,7 @@ void	raycast(t_session *session)
 		session->matrix->x_scr++;
 
 	}
+	printf("plane vec (%f, %f)\n", session->map->player->plane_x, session->map->player->plane_y);
 	printf("Player position (%f, %f)\n", session->map->player->x_pos,
 	session->map->player->y_pos);
 	printf("player direction vec (%f, %f)\n", session->map->player->dir_x, session->map->player->dir_y);
