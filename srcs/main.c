@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bperez-a <bperez-a@student.42bangkok.co    +#+  +:+       +#+        */
+/*   By: bperez-a <bperez-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 11:45:25 by bperez-a          #+#    #+#             */
-/*   Updated: 2024/07/09 14:54:49 by bperez-a         ###   ########.fr       */
+/*   Updated: 2024/07/16 09:49:34 by bperez-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	ft_hook(void *param)
 	t_session	*session;
 
 	session = (t_session *)param;
-	
+
 	if (mlx_is_key_down(session->mlx, MLX_KEY_W))
 	{
 		printf("W is pressed\n");
@@ -32,7 +32,7 @@ void	ft_hook(void *param)
 		}
 		else
 			move_player_y_pos(session->map->player);
-		
+
 
 	}
 	if (mlx_is_key_down(session->mlx, MLX_KEY_S))
@@ -42,7 +42,24 @@ void	ft_hook(void *param)
 		raycast(session->map, session->matrix, session);
 		//update_screen(session->matrix, session->map);
 		display_screen(session->matrix, session->mlx_window);
-
+	}
+	if (mlx_is_key_down(session->mlx, MLX_KEY_LEFT))
+	{
+		printf("LEFT is pressed\n");
+		session->map->player->angle_rad -= session->map->player->rotat_step;
+		// handle overflowing
+		// update degrees as well
+		update_screen(session->matrix, session->map);
+		display_screen(session->matrix, session->mlx_window);
+	}
+	if (mlx_is_key_down(session->mlx, MLX_KEY_RIGHT))
+	{
+		printf("RIGHT is pressed\n");
+		session->map->player->angle_rad += session->map->player->rotat_step;
+		// handle overflowing
+		// update degrees as well
+		update_screen(session->matrix, session->map);
+		display_screen(session->matrix, session->mlx_window);
 	}
 }
 
@@ -59,6 +76,7 @@ int main(int argc, char **argv)
 	mlx_image_to_window(mlx, image, 0, 0);
 
 	t_map *map_data = handle_input(argv[1]);
+	
 	init_player_in_map(map_data);
 	t_session *session = malloc(sizeof(t_session));
 	session->mlx = mlx;
@@ -72,7 +90,7 @@ int main(int argc, char **argv)
 	for (int i = 0; map_data->map[i] != NULL; i++)
 		printf("%s\n", map_data->map[i]);
 	printf("Player position: %d, %d\n", map_data->player_x, map_data->player_y);
-	
+
 	mlx_loop_hook(mlx, ft_hook, session);
 	mlx_loop(mlx);
 	mlx_terminate(mlx);

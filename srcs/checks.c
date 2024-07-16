@@ -6,7 +6,7 @@
 /*   By: bperez-a <bperez-a@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 14:11:58 by bperez-a          #+#    #+#             */
-/*   Updated: 2024/07/09 12:45:48 by bperez-a         ###   ########.fr       */
+/*   Updated: 2024/07/11 13:40:11 by bperez-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ bool check_map(t_map *map_data)
 			{
 				map_data->player_x = j;
 				map_data->player_y = i;
+				map_data->player_dir = c;
                 player_count++;
 			}
 
