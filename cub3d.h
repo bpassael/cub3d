@@ -91,7 +91,7 @@ typedef struct s_player
 	double	delta_dist_x;
 	double	delta_dist_y;
 	
-	int	map_x; //which square or ray is in
+	int	map_x; //which square  ray is in
 	int	map_y; // for now
 
 }			t_player;
