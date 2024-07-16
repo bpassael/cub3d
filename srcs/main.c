@@ -22,16 +22,10 @@ void	ft_hook(void *param)
 	{
 		printf("W is pressed\n");
 		move_player_y_neg(session->map->player);
-		if (compute_distance_to_wall(session->map) > 1)
-		{
-			//update_screen(session->matrix, session->map);
+		raycast(session);
+		display_screen(session->matrix, session->mlx_window);
 
-			raycast(session->map, session->matrix, session);
-			display_screen(session->matrix, session->mlx_window);
-
-		}
-		else
-			move_player_y_pos(session->map->player);
+	
 
 
 	}
@@ -39,7 +33,7 @@ void	ft_hook(void *param)
 	{
 		printf("S is pressed\n");
 		move_player_y_pos(session->map->player);
-		raycast(session->map, session->matrix, session);
+		raycast(session);
 		//update_screen(session->matrix, session->map);
 		display_screen(session->matrix, session->mlx_window);
 	}
@@ -50,7 +44,7 @@ void	ft_hook(void *param)
 		// handle overflowing
 		// update degrees as well
 		rotate_player_left(session->map->player);
-		raycast(session->map, session->matrix, session);
+		raycast(session);
 		
 		display_screen(session->matrix, session->mlx_window);
 	}
@@ -61,7 +55,7 @@ void	ft_hook(void *param)
 		// handle overflowing
 		// update degrees as well
 		rotate_player_right(session->map->player);
-		raycast(session->map, session->matrix, session);
+		raycast(session);
 		display_screen(session->matrix, session->mlx_window);
 	}
 
@@ -69,14 +63,14 @@ void	ft_hook(void *param)
 	{
 		printf("A is pressed\n");
 		move_player_x_neg(session->map->player);
-		raycast(session->map, session->matrix, session);
+		raycast(session);
 		display_screen(session->matrix, session->mlx_window);
 	}
 	if (mlx_is_key_down(session->mlx, MLX_KEY_D))
 	{
 		printf("D is pressed\n");
 		move_player_x_pos(session->map->player);
-		raycast(session->map, session->matrix, session);
+		raycast(session);
 		display_screen(session->matrix, session->mlx_window);
 	}
 }
@@ -103,7 +97,6 @@ int main(int argc, char **argv)
 	session->mlx_window = image;
 
 
-	printf("%f distance to wall\n", compute_distance_to_wall(map_data));
 	printf("Map:\n");
 	for (int i = 0; map_data->map[i] != NULL; i++)
 		printf("%s\n", map_data->map[i]);

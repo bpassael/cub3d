@@ -53,6 +53,10 @@ typedef	struct s_screen_matrix
 	int		x_scr;
 	int		y_scr;
 
+	int		start_draw;
+	int		end_draw;
+
+
 
 }				t_screen_matrix;
 
@@ -91,7 +95,10 @@ typedef struct s_player
 	double	side_dist_y;
 	double	delta_dist_x;
 	double	delta_dist_y;
-	
+	double	wall_dist;
+	double	wall_x;
+	double	wall_y;
+
 	int	map_x; //which square  ray is in
 	int	map_y; // for now
 
@@ -139,7 +146,6 @@ t_pixel     **init_pixel_matrix(int width, int height);
 void free_pixel_matrix(t_pixel **matrix, int height);
 t_screen_matrix *init_screen_matrix(int width, int height);
 void    display_screen(t_screen_matrix *matrix, mlx_image_t *image);
-void    update_screen(t_screen_matrix *matrix, t_map *map);
 void    init_player_in_map(t_map *map);
 void	rotate_player_left(t_player *player);
 void	rotate_player_right(t_player *player);
@@ -155,8 +161,8 @@ void    move_player_x_neg(t_player *player);
 void    free_screen_matrix(t_screen_matrix *matrix);
 
 //basic raycasting utils
-double compute_distance_to_wall(t_map *map);
-void    raycast(t_map *map, t_screen_matrix *matrix, t_session *session);
+//double compute_distance_to_wall(t_map *map);
+void	raycast(t_session *session);
 
 
 

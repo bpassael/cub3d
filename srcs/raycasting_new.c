@@ -38,7 +38,7 @@ void	determine_dda_dir(t_player *player)
 
 
 //Finds where we hit the wall
-void	perform_dda(t_player *player, t_map *map, int side)
+void	perform_dda(t_player *player, t_map *map)
 {
 	int hitwall;
 
@@ -70,13 +70,83 @@ void	perform_dda(t_player *player, t_map *map, int side)
 	
 };
 
+void	compute_wall_height(t_session *session, t_player *player)
+{
+	int	wall_height;
+
+	if (player->side == 0)
+		player->wall_dist = (player->side_dist_x - player->delta_dist_x);
+	else
+		player->wall_dist = (player->side_dist_y - player->delta_dist_y);
+	
+	wall_height = (int)(HEIGHT / player->wall_dist);
+	session->matrix->start_draw = HEIGHT / 2  - wall_height / 2;
+	session->matrix->end_draw = HEIGHT / 2  + wall_height / 2;
+	if (session->matrix->end_draw >= HEIGHT)
+		session->matrix->end_draw = HEIGHT - 1;
+	if (player->side == 0)
+		player->wall_x = player->y_pos + player->wall_dist * player->dir_y;
+	else
+		player->wall_x = player->x_pos + player->wall_dist * player->dir_x;
+	player->wall_x -= floor(player->wall_x);
+};
+
+
+void	draw_stripe(t_session *session)
+{
+    int x_scr;
+    int i;
+	int draw_start;
+	int draw_end;
+
+	draw_start = session->matrix->start_draw;
+	draw_end = session->matrix->end_draw;
+	
+    x_scr = session->matrix->x_scr;
+
+    //draw sky first
+    for (i = 0; i < draw_start; i++)
+    {
+        session->matrix->matrix[i][x_scr].x = x_scr;
+        session->matrix->matrix[i][x_scr].y = i;
+        session->matrix->matrix[i][x_scr].color = create_trgb(0, 100, 200, 100);
+    }
+
+    //draw wall
+    for (i = draw_start; i < draw_end; i++)
+    {
+        session->matrix->matrix[i][x_scr].x = x_scr;
+        session->matrix->matrix[i][x_scr].y = i;
+		session->matrix->matrix[i][x_scr].color = create_trgb(100, 255 , 255, 0);
+        //session->matrix->matrix[i][x_scr].color = create_trgb(100, 255 , 255, 0);
+    }
+
+    //draw ceiling
+    for (i = draw_end; i < session->matrix->height; i++)
+    {
+        session->matrix->matrix[i][x_scr].x = x_scr;
+        session->matrix->matrix[i][x_scr].y = i;
+        session->matrix->matrix[i][x_scr].color = create_trgb(0, 250, 0, 40);
+    }
+
+};
+
+
 void	raycast(t_session *session)
 {
 	session->matrix->x_scr = 0;
 
 	while (session->matrix->x_scr < WIDTH)
 	{
-		
+		init_raycast_data(session->map->player, session->matrix->x_scr);
+		determine_dda_dir(session->map->player);
+		perform_dda(session->map->player, session->map);
+
+		compute_wall_height(session, session->map->player);
+		draw_stripe(session);
+
+		session->matrix->x_scr++;
+
 	}
 	
 
