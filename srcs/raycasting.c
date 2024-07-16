@@ -163,6 +163,6 @@ void    raycast(t_map *map, t_screen_matrix *matrix, t_session *session)
         draw_vert_stripe(session, draw_start, draw_end);
         matrix->x_scr++;
     }
-	printf("Distance to the wall: %f\n", wall_dist);
+	printf("player location (%f, %f);Distance to the wall: %f\n",map->player->x_pos, map->player->y_pos ,wall_dist);
 };
 

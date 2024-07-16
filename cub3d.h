@@ -25,7 +25,7 @@
 # define WIDTH 1800
 # define HEIGHT 1090
 # define MOVE_STEP 0.05
-# define ROTAT_STEP 0.02
+# define ROTAT_STEP 0.01
 # define PI 3.14159265
 
 
@@ -140,11 +140,14 @@ t_screen_matrix *init_screen_matrix(int width, int height);
 void    display_screen(t_screen_matrix *matrix, mlx_image_t *image);
 void    update_screen(t_screen_matrix *matrix, t_map *map);
 void    init_player_in_map(t_map *map);
+void	rotate_player_left(t_player *player);
+
 
 //Movement
 void    move_player_y_pos(t_player *player);
 void    move_player_y_neg(t_player *player);
-
+void    move_player_x_pos(t_player *player);
+void    move_player_x_neg(t_player *player);
 
 
 void    free_screen_matrix(t_screen_matrix *matrix);
