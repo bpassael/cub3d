@@ -146,6 +146,8 @@ void	draw_stripe(t_session *session)
 
 };
 
+//NOTE: problem with rotation: every rotation step increases
+// magnitude of direction vector thats why it explodes probably
 
 void	raycast(t_session *session)
 {
@@ -168,4 +170,5 @@ void	raycast(t_session *session)
 	}
 	printf("Player position (%f, %f)\n", session->map->player->x_pos,
 	session->map->player->y_pos);
+	printf("player direction vec (%f, %f)\n", session->map->player->dir_x, session->map->player->dir_y);
 };
