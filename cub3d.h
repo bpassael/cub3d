@@ -25,7 +25,7 @@
 # define WIDTH 1200
 # define HEIGHT 800
 # define MOVE_STEP 0.1
-# define ROTAT_STEP 0.02
+# define ROTAT_STEP 0.04
 # define PI 3.14159265
 
 
@@ -145,10 +145,10 @@ void	rotate_player_right(t_player *player);
 
 
 //Movement
-void    move_player_forward(t_player *player);
-void    move_player_backward(t_player *player);
-void    move_player_left(t_player *player);
-void    move_player_right(t_player *player);
+void    move_player_forward(t_map *map, t_player *player);
+void    move_player_backward(t_map *map,t_player *player);
+void    move_player_left(t_map *map, t_player *player);
+void    move_player_right(t_map *map, t_player *player);
 
 
 void    free_screen_matrix(t_screen_matrix *matrix);
