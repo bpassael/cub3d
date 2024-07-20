@@ -14,7 +14,7 @@ void compute_ray_direction(t_map *map, t_screen_matrix *matrix)
 
 void    dda_compute_steps(t_map *map, t_screen_matrix *matrix)
 {   
-    printf("dda compute steps()\n");
+    //printf("dda compute steps()\n");
     double  delta_dist_x;
     double  delta_dist_y;
 
@@ -56,7 +56,6 @@ void    dda_compute_steps(t_map *map, t_screen_matrix *matrix)
 
 int    dda_find_wall(t_map *map, t_screen_matrix *matrix) //returns side = 0 or side = 1
 {   
-    printf("dda find wall()\n");
     int side;
 
     while (1)
@@ -81,7 +80,6 @@ int    dda_find_wall(t_map *map, t_screen_matrix *matrix) //returns side = 0 or 
 
 void    draw_vert_stripe(t_session *session, int draw_start, int draw_end, int color)
 {   
-    printf("vert_stripe_draw;draw_start =%d;  draw_end = %d()\n", draw_start, draw_end);
     int x_scr;
     int i;
 
@@ -152,7 +150,6 @@ void    raycast(t_map *map, t_screen_matrix *matrix, t_session *session)
 
         line_height = (int) matrix->height / wall_dist;
         
-        printf("line_height %d; wall_dist %f", line_height, wall_dist);
         draw_start = matrix->height / 2  - line_height / 2;
         draw_end = matrix->height / 2  + line_height / 2;
 

@@ -108,5 +108,5 @@ void rotate_player_left(t_player *player)
     player->plane_x = old_x * cos(-ROTAT_STEP) - old_y * sin(-ROTAT_STEP);
     player->plane_y = old_x * sin(-ROTAT_STEP) + old_y * cos(-ROTAT_STEP);
 
-    printf("Updated direction vec after (%f; %f)\n", player->dir_x, player->dir_y);
+    //printf("Updated direction vec after (%f; %f)\n", player->dir_x, player->dir_y);
 }
