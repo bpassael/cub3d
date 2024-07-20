@@ -17,5 +17,4 @@ void	ft_error(char *message)
 	ft_putstr_fd("Error\n", 2);
 	ft_putstr_fd(message, 2);
 	ft_putchar_fd('\n', 2);
-	exit(1);
 }
