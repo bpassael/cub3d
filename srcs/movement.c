@@ -1,50 +1,60 @@
 #include "../cub3d.h"
 
-
-void    move_player_x_pos(t_player *player)
+bool	is_move_valid()
 {
-    if ((player->x_pos + player->move_step) >= WIDTH || (player->x_pos + player->move_step) <= 0)
-    {
-        ft_error("Can't move anymore; You hit the wall!");
-        return ;
-    }
 
-    player->x_pos += player->move_step;
-    
-};
-
-void    move_player_x_neg(t_player *player)
-{
-    if ((player->x_pos - player->move_step) >= WIDTH || (player->x_pos - player->move_step) <= 0)
-    {
-        ft_error("Can't move anymore; You hit the wall!");
-        return ;
-    }
-
-    player->x_pos -= player->move_step;
-    
 };
 
 
-void    move_player_y_pos(t_player *player)
+void    move_player_forward(t_player *player)
 {
-    if ((player->y_pos + player->move_step) >= HEIGHT)
-    {
-        ft_error("Can't move anymore; You hit the wall!");
-        return ;
-    }
-    player->y_pos += player->move_step;
-}
+	double new_x_pos;
+	double new_y_pos;
 
-void    move_player_y_neg(t_player *player)
+	new_x_pos = player->x_pos + player->dir_x * MOVE_STEP;
+	new_y_pos = player->y_pos + player->dir_y * MOVE_STEP;
+
+	player->x_pos = new_x_pos;
+	player->y_pos = new_y_pos;
+};
+
+void    move_player_backward(t_player *player)
 {
-    if ((player->y_pos - player->move_step) <= 0)
-    {
-        ft_error("Can't move anymore; You hit the wall!");
-        return ;
-    }
-    player->y_pos -= player->move_step;
-}
+    double new_x_pos;
+	double new_y_pos;
+
+	new_x_pos = player->x_pos - player->dir_x * MOVE_STEP;
+	new_y_pos = player->y_pos - player->dir_y * MOVE_STEP;
+
+	player->x_pos = new_x_pos;
+	player->y_pos = new_y_pos;
+    
+};
+
+void    move_player_left(t_player *player)
+{
+    double new_x_pos;
+	double new_y_pos;
+
+	new_x_pos = player->x_pos + player->dir_y * MOVE_STEP;
+	new_y_pos = player->y_pos - player->dir_x * MOVE_STEP;
+    
+	player->x_pos = new_x_pos;
+	player->y_pos = new_y_pos;
+};
+
+void    move_player_right(t_player *player)
+{
+    double new_x_pos;
+	double new_y_pos;
+
+	new_x_pos = player->x_pos - player->dir_y * MOVE_STEP;
+	new_y_pos = player->y_pos + player->dir_x * MOVE_STEP;
+    
+	player->x_pos = new_x_pos;
+	player->y_pos = new_y_pos;
+    
+};
 
 void	rotate_player_right(t_player *player)
 {

@@ -135,7 +135,6 @@ typedef struct s_session
 
 
 //Screen matrix
-
 t_pixel     **init_pixel_matrix(int width, int height);
 void free_pixel_matrix(t_pixel **matrix, int height);
 t_screen_matrix *init_screen_matrix(int width, int height);
@@ -146,10 +145,10 @@ void	rotate_player_right(t_player *player);
 
 
 //Movement
-void    move_player_y_pos(t_player *player);
-void    move_player_y_neg(t_player *player);
-void    move_player_x_pos(t_player *player);
-void    move_player_x_neg(t_player *player);
+void    move_player_forward(t_player *player);
+void    move_player_backward(t_player *player);
+void    move_player_left(t_player *player);
+void    move_player_right(t_player *player);
 
 
 void    free_screen_matrix(t_screen_matrix *matrix);
