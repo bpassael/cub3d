@@ -22,10 +22,10 @@
 # include <stdbool.h>
 # include <math.h>
 
-# define WIDTH 800
-# define HEIGHT 600
-# define MOVE_STEP 0.05
-# define ROTAT_STEP 0.01
+# define WIDTH 1200
+# define HEIGHT 800
+# define MOVE_STEP 0.1
+# define ROTAT_STEP 0.02
 # define PI 3.14159265
 
 
@@ -140,7 +140,6 @@ t_pixel     **init_pixel_matrix(int width, int height);
 void free_pixel_matrix(t_pixel **matrix, int height);
 t_screen_matrix *init_screen_matrix(int width, int height);
 void    display_screen(t_screen_matrix *matrix, mlx_image_t *image);
-void    update_screen(t_screen_matrix *matrix, t_map *map);
 void    init_player_in_map(t_map *map);
 void	rotate_player_left(t_player *player);
 void	rotate_player_right(t_player *player);
@@ -155,8 +154,6 @@ void    move_player_x_neg(t_player *player);
 
 void    free_screen_matrix(t_screen_matrix *matrix);
 
-//basic raycasting utils
-double compute_distance_to_wall(t_map *map);
 void    raycast(t_map *map, t_screen_matrix *matrix, t_session *session);
 
 
