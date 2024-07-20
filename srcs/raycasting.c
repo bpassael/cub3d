@@ -16,16 +16,19 @@ double compute_distance_to_wall(t_map *map)
     return distance;
 };
 
-void    compute_ray_direction(t_map *map, t_screen_matrix *matrix)
-{  
-    //compute x coord for camera vector
-    map->player->camera_x = ((2 * map->player->x_pos) / matrix->width) - 1;
+void compute_ray_direction(t_map *map, t_screen_matrix *matrix) {  
+    // Compute x coordinate for the camera vector
+    map->player->camera_x = 2.0 * matrix->x_scr / (double)WIDTH - 1.0;
 
-    //compute direction vector
+    printf("x_scr: %d ; camera_x: %f ; WIDTH: %d\n", matrix->x_scr, map->player->camera_x, WIDTH);
+
+    // Compute direction vector
     map->player->ray_dir_x = map->player->dir_x + map->player->plane_x * map->player->camera_x;
     map->player->ray_dir_y = map->player->dir_y + map->player->plane_y * map->player->camera_x;
 
-};
+    // Print the computed direction vectors for debugging
+    printf("ray_dir_x: %f ; ray_dir_y: %f\n", map->player->ray_dir_x, map->player->ray_dir_y);
+}
 
 
 void    dda_compute_steps(t_map *map, t_screen_matrix *matrix)
@@ -144,6 +147,7 @@ void    raycast(t_map *map, t_screen_matrix *matrix, t_session *session)
     {
         /* raycast loop */
         compute_ray_direction(map, matrix);
+
         dda_compute_steps(map, matrix);
         side = dda_find_wall(map, matrix);
 
@@ -171,12 +175,14 @@ void    raycast(t_map *map, t_screen_matrix *matrix, t_session *session)
 		};
 
         line_height = (int) matrix->height / wall_dist;
+        printf("LINE HEIGHT: %d\n", line_height);
 
         draw_start = matrix->height / 2  - line_height / 2;
         draw_end = matrix->height / 2  + line_height / 2;
 
         draw_vert_stripe(session, draw_start, draw_end, color);
         matrix->x_scr++;
+        printf("X_scr %d\n", matrix->x_scr);
     }
 	printf("player location (%f, %f);Distance to the wall: %f\n",map->player->x_pos, map->player->y_pos ,wall_dist);
 };

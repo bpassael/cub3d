@@ -22,8 +22,8 @@
 # include <stdbool.h>
 # include <math.h>
 
-# define WIDTH 1800
-# define HEIGHT 1090
+# define WIDTH 800
+# define HEIGHT 600
 # define MOVE_STEP 0.05
 # define ROTAT_STEP 0.01
 # define PI 3.14159265
@@ -74,14 +74,15 @@ typedef struct s_player
 	double	camera_x; //camera X is single x coordinate along plane line
 	double	plane_x; //2D version of of camera plane. (plane vector)
 	double	plane_y; //plane vector is always orthogonal to dir vector
+	//raydir that we changer during raycast
+	double	ray_dir_x;
+	double	ray_dir_y;
 
 	//initial ray/player direction
 	double	dir_x;
 	double	dir_y;
 
-	//raydir that we changer during raycast
-	double	ray_dir_x;
-	double	ray_dir_y;
+	
 	
 	//DDA stuff
 	int		step_x;
