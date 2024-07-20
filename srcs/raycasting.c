@@ -93,7 +93,7 @@ int    dda_find_wall(t_map *map, t_screen_matrix *matrix) //returns side = 0 or 
     return (side);
 };
 
-void    draw_vert_stripe(t_session *session, int draw_start, int draw_end)
+void    draw_vert_stripe(t_session *session, int draw_start, int draw_end, int color)
 {
     int x_scr;
     int i;
@@ -113,7 +113,8 @@ void    draw_vert_stripe(t_session *session, int draw_start, int draw_end)
     {
         session->matrix->matrix[i][x_scr].x = x_scr;
         session->matrix->matrix[i][x_scr].y = i;
-        session->matrix->matrix[i][x_scr].color = create_trgb(100, 255 , 255, 0);
+		session->matrix->matrix[i][x_scr].color = color;
+        //session->matrix->matrix[i][x_scr].color = create_trgb(100, 255 , 255, 0);
     }
 
     //draw ceiling
@@ -136,6 +137,7 @@ void    raycast(t_map *map, t_screen_matrix *matrix, t_session *session)
     int    draw_start;
     int    draw_end;
 
+	int color;
 
     matrix->x_scr = 0;
     while (matrix->x_scr < WIDTH)
@@ -155,14 +157,27 @@ void    raycast(t_map *map, t_screen_matrix *matrix, t_session *session)
                             + (1 - map->player->step_y)) 
                             / map->player->ray_dir_y);
 
+		if (map->player->map_y == 0)
+		{
+			color = create_trgb(0, 20, 100, 40);
+		}
+		else if (map->player->map_x == 0)
+		{	
+			color = create_trgb(0, 0, 100, 255);
+		}
+		else
+		{
+			color = create_trgb(100, 255 , 255, 0);
+		};
+
         line_height = (int) matrix->height / wall_dist;
 
         draw_start = matrix->height / 2  - line_height / 2;
         draw_end = matrix->height / 2  + line_height / 2;
 
-        draw_vert_stripe(session, draw_start, draw_end);
+        draw_vert_stripe(session, draw_start, draw_end, color);
         matrix->x_scr++;
     }
-	printf("Distance to the wall: %f\n", wall_dist);
+	printf("player location (%f, %f);Distance to the wall: %f\n",map->player->x_pos, map->player->y_pos ,wall_dist);
 };
 

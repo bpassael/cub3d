@@ -46,10 +46,12 @@ void	ft_hook(void *param)
 	if (mlx_is_key_down(session->mlx, MLX_KEY_LEFT))
 	{
 		printf("LEFT is pressed\n");
-		session->map->player->angle_rad -= session->map->player->rotat_step;
+		
 		// handle overflowing
 		// update degrees as well
-		update_screen(session->matrix, session->map);
+		rotate_player_left(session->map->player);
+		raycast(session->map, session->matrix, session);
+		
 		display_screen(session->matrix, session->mlx_window);
 	}
 	if (mlx_is_key_down(session->mlx, MLX_KEY_RIGHT))
@@ -58,7 +60,23 @@ void	ft_hook(void *param)
 		session->map->player->angle_rad += session->map->player->rotat_step;
 		// handle overflowing
 		// update degrees as well
-		update_screen(session->matrix, session->map);
+		rotate_player_right(session->map->player);
+		raycast(session->map, session->matrix, session);
+		display_screen(session->matrix, session->mlx_window);
+	}
+
+	if (mlx_is_key_down(session->mlx, MLX_KEY_A))
+	{
+		printf("A is pressed\n");
+		move_player_x_neg(session->map->player);
+		raycast(session->map, session->matrix, session);
+		display_screen(session->matrix, session->mlx_window);
+	}
+	if (mlx_is_key_down(session->mlx, MLX_KEY_D))
+	{
+		printf("D is pressed\n");
+		move_player_x_pos(session->map->player);
+		raycast(session->map, session->matrix, session);
 		display_screen(session->matrix, session->mlx_window);
 	}
 }

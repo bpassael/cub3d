@@ -25,7 +25,7 @@
 # define WIDTH 1800
 # define HEIGHT 1090
 # define MOVE_STEP 0.05
-# define ROTAT_STEP 0.02
+# define ROTAT_STEP 0.01
 # define PI 3.14159265
 
 
@@ -86,12 +86,13 @@ typedef struct s_player
 	//DDA stuff
 	int		step_x;
 	int		step_y;
+	int		side;
 	double	side_dist_x;
 	double	side_dist_y;
 	double	delta_dist_x;
 	double	delta_dist_y;
 	
-	int	map_x; //which square or ray is in
+	int	map_x; //which square  ray is in
 	int	map_y; // for now
 
 }			t_player;
@@ -140,11 +141,15 @@ t_screen_matrix *init_screen_matrix(int width, int height);
 void    display_screen(t_screen_matrix *matrix, mlx_image_t *image);
 void    update_screen(t_screen_matrix *matrix, t_map *map);
 void    init_player_in_map(t_map *map);
+void	rotate_player_left(t_player *player);
+void	rotate_player_right(t_player *player);
+
 
 //Movement
 void    move_player_y_pos(t_player *player);
 void    move_player_y_neg(t_player *player);
-
+void    move_player_x_pos(t_player *player);
+void    move_player_x_neg(t_player *player);
 
 
 void    free_screen_matrix(t_screen_matrix *matrix);
