@@ -8,28 +8,33 @@ LIBFT = libft
 LIBFT_LIB = $(LIBFT)/libft.a
 
 SRC_DIR = srcs
-SRC_FILES = main.c error.c parse.c checks.c drawing.c \
-			screen_matrix_utils.c raycasting.c \
-			player_utils.c movement.c textures.c
+SRC_FILES = main.c error.c \
+			parsing/checks.c parsing/parse.c \
+			movement/mov_hook.c movement/mov_move.c movement/mov_rotate.c movement/mov_utils.c \
+			init/init_player.c init/init_textures.c \
+			raycasting/raycasting.c \
+			drawing/drawing.c
 SRC_PATHS = $(addprefix $(SRC_DIR)/,$(SRC_FILES))
 OBJ_DIR = obj
-OBJ_FILES = $(SRC_PATHS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
+OBJ_FILES = $(SRC_FILES:%.c=$(OBJ_DIR)/%.o)
 
-# Update these lines for GLFW and other required libraries
 GLFW_LIB = -lglfw
 GLFW_PATH = /usr/lib/x86_64-linux-gnu
 OPENGL_LIB = -lGL
 MATH_LIB = -lm
 DL_LIB = -ldl
 PTHREAD_LIB = -pthread
-
-# Add this line for X11 library
 X11_LIB = -lX11
 
 all: $(OBJ_DIR) $(NAME)
 
 $(OBJ_DIR):
 	mkdir -p $(OBJ_DIR)
+	mkdir -p $(OBJ_DIR)/parsing
+	mkdir -p $(OBJ_DIR)/init
+	mkdir -p $(OBJ_DIR)/movement
+	mkdir -p $(OBJ_DIR)/raycasting
+	mkdir -p $(OBJ_DIR)/drawing
 
 $(NAME): $(LIBFT_LIB) $(OBJ_FILES)
 	$(CC) $(CFLAGS) -o $(NAME) $(OBJ_FILES) \
