@@ -12,7 +12,7 @@ SRC_FILES = main.c error.c \
 			parsing/checks.c parsing/parse.c \
 			movement/mov_hook.c movement/mov_move.c movement/mov_rotate.c movement/mov_utils.c \
 			init/init_player.c init/init_textures.c \
-			raycasting/raycasting.c \
+			raycasting/raycasting1.c raycasting/raycasting2.c \
 			drawing/drawing.c
 SRC_PATHS = $(addprefix $(SRC_DIR)/,$(SRC_FILES))
 OBJ_DIR = obj

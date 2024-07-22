@@ -6,7 +6,7 @@
 /*   By: bperez-a <bperez-a@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 12:05:58 by bperez-a          #+#    #+#             */
-/*   Updated: 2024/07/22 13:46:59 by bperez-a         ###   ########.fr       */
+/*   Updated: 2024/07/22 17:53:21 by bperez-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@
 #define TEXTURE_WIDTH 64
 #define TEXTURE_HEIGHT 64
 
+
+
 typedef struct s_texture {
     mlx_texture_t *texture;
     mlx_image_t   *image;
@@ -45,47 +47,29 @@ typedef struct s_textures {
 
 
 
-
-
-
-//represents a single pixel on screen
-typedef struct s_pixel
-{
-	int		x;
-	int		y;
-	int		color;
-
-}			   t_pixel;
-
-
-
-
 typedef struct s_ray
 {
-    double cameraX;
-    double rayDirX;
-    double rayDirY;
-    int mapX;
-    int mapY;
-    double sideDistX;
-    double sideDistY;
-    double deltaDistX;
-    double deltaDistY;
-    double perpWallDist;
-    int stepX;
-    int stepY;
+    double camera_x;
+    double ray_dir_x;
+    double ray_dir_y;
+    int map_x;
+    int map_y;
+    double side_dist_x;
+    double side_dist_y;
+    double delta_dist_x;
+    double delta_dist_y;
+    double perp_wall_dist;
+    int step_x;
+    int step_y;
     int hit;
     int side;
-    int lineHeight;
-    int drawStart;
-    int drawEnd;
-    double wallX;
-    int texX;
-    int texNum;
+    int line_height;
+    int draw_start;
+    int draw_end;
+    double wall_x;
+    int tex_x;
+    int tex_num;
 } t_ray;
-
-
-
 
 
 typedef struct s_player
@@ -97,35 +81,12 @@ typedef struct s_player
 	double	rotat_step;
 	double	angle_deg;
 	double	angle_rad;
-
-
-	/*RAYCASTING STUFF*/
-	double	fow;
-	double	camera_x; //camera X is single x coordinate along plane line
-	double	plane_x; //2D version of of camera plane. (plane vector)
-	double	plane_y; //plane vector is always orthogonal to dir vector
-	//raydir that we changer during raycast
-	double	ray_dir_x;
-	double	ray_dir_y;
-
-	//initial ray/player direction
+	double	plane_x;
+	double	plane_y;
 	double	dir_x;
 	double	dir_y;
-
-	
-	
-	//DDA stuff
-	int		step_x;
-	int		step_y;
-	int		side;
-	double	side_dist_x;
-	double	side_dist_y;
-	double	delta_dist_x;
-	double	delta_dist_y;
-	
-	int	map_x; //which square  ray is in
-	int	map_y; // for now
-
+	int	map_x;
+	int	map_y;
 }			t_player;
 
 
@@ -188,15 +149,15 @@ void    init_ray(t_map *map, t_ray *ray, int x);
 void    init_ray_step(t_map *map, t_ray *ray);
 void    perform_dda(t_map *map, t_ray *ray);
 void    calc_perp_wall_dist(t_map *map, t_ray *ray);
-void calc_wall_specs(t_ray *ray, int *drawStart, int *drawEnd, t_player *player);
+void calc_wall_specs(t_ray *ray, int *draw_start, int *draw_end, t_player *player);
 void    calc_wall_x(t_ray *ray, t_player *player);
 void    determine_texture(t_ray *ray);
 
 
 void    draw_vertical_line(t_session *session, t_ray *ray, int x);
-void    draw_ceiling(t_session *session, int x, int drawStart);
-void    draw_floor(t_session *session, int x, int drawEnd);
-void    draw_textured_wall(t_session *session, int x, int drawStart, int drawEnd, t_ray *ray);
+void    draw_ceiling(t_session *session, int x, int draw_start);
+void    draw_floor(t_session *session, int x, int draw_end);
+void    draw_textured_wall(t_session *session, int x, int draw_start, int draw_end, t_ray *ray);
 
 
 
