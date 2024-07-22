@@ -1,7 +1,7 @@
-NO ./textures/Bark.png
-SO ./textures/Bricks.png
-WE ./textures/Dirt.png
-EA ./textures/Coal.png
+NO ./textures/predatel.png
+SO ./textures/lov66.png
+WE ./textures/flex.png
+EA ./textures/vitaminka.png
 
 F 220,100,0
 C 225,30,0
