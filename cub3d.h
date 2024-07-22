@@ -6,7 +6,7 @@
 /*   By: bperez-a <bperez-a@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 12:05:58 by bperez-a          #+#    #+#             */
-/*   Updated: 2024/07/22 10:31:51 by bperez-a         ###   ########.fr       */
+/*   Updated: 2024/07/22 13:46:59 by bperez-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,21 +58,6 @@ typedef struct s_pixel
 }			   t_pixel;
 
 
-//matrix composed of pixels
-//used to draw the field of view of a player
-
-typedef	struct s_screen_matrix
-{
-	t_pixel	**matrix;
-	int		width;
-	int 	height;
-
-	//need for raycast loop
-	int		x_scr;
-	int		y_scr;
-
-
-}				t_screen_matrix;
 
 
 typedef struct s_ray
@@ -175,34 +160,30 @@ typedef struct s_session
 	t_map			*map;
 	mlx_t 			*mlx;
 	mlx_image_t 	*mlx_window;
-	t_screen_matrix	*matrix;
 
 }				t_session;
 
 
 
-//Screen matrix
-t_pixel     **init_pixel_matrix(int width, int height);
-void free_pixel_matrix(t_pixel **matrix, int height);
-t_screen_matrix *init_screen_matrix(int width, int height);
-void    display_screen(t_screen_matrix *matrix, mlx_image_t *image);
+
+void	ft_hook(void *param);
+
+
 void    init_player_in_map(t_map *map);
+
+
 void	rotate_player_left(t_player *player);
 void	rotate_player_right(t_player *player);
-
-
-//Movement
 void    move_player_forward(t_map *map, t_player *player);
 void    move_player_backward(t_map *map,t_player *player);
 void    move_player_left(t_map *map, t_player *player);
 void    move_player_right(t_map *map, t_player *player);
+bool	is_move_valid(t_map *map, double new_x_pos, double new_y_pos);
 
 
-void    free_screen_matrix(t_screen_matrix *matrix);
 
 
-
-void    raycast(t_map *map, t_screen_matrix *matrix, t_session *session);
+void    raycast(t_map *map, t_session *session);
 void    init_ray(t_map *map, t_ray *ray, int x);
 void    init_ray_step(t_map *map, t_ray *ray);
 void    perform_dda(t_map *map, t_ray *ray);
@@ -210,6 +191,8 @@ void    calc_perp_wall_dist(t_map *map, t_ray *ray);
 void calc_wall_specs(t_ray *ray, int *drawStart, int *drawEnd, t_player *player);
 void    calc_wall_x(t_ray *ray, t_player *player);
 void    determine_texture(t_ray *ray);
+
+
 void    draw_vertical_line(t_session *session, t_ray *ray, int x);
 void    draw_ceiling(t_session *session, int x, int drawStart);
 void    draw_floor(t_session *session, int x, int drawEnd);

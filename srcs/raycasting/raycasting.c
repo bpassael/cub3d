@@ -1,6 +1,6 @@
 #include "../cub3d.h"
 
-void raycast(t_map *map, t_screen_matrix *matrix, t_session *session)
+void raycast(t_map *map, t_session *session)
 {
     t_ray ray;
     int x;
@@ -130,42 +130,4 @@ void determine_texture(t_ray *ray)
 }
 
 
-void draw_vertical_line(t_session *session, t_ray *ray, int x)
-{
-    draw_textured_wall(session, x, ray->drawStart, ray->drawEnd, ray);
-    draw_ceiling(session, x, ray->drawStart);
-    draw_floor(session, x, ray->drawEnd);
-}
 
-
-void draw_ceiling(t_session *session, int x, int drawStart)
-{
-    int y;
-    uint32_t ceiling_color;
-
-    ceiling_color = create_rgb(session->map->ceiling_color_r,
-                               session->map->ceiling_color_g,
-                               session->map->ceiling_color_b);
-    y = 0;
-    while (y < drawStart)
-    {
-        mlx_put_pixel(session->mlx_window, x, y, ceiling_color);
-        y++;
-    }
-}
-
-void draw_floor(t_session *session, int x, int drawEnd)
-{
-    int y;
-    uint32_t floor_color;
-
-    floor_color = create_rgb(session->map->floor_color_r,
-                             session->map->floor_color_g,
-                             session->map->floor_color_b);
-    y = drawEnd;
-    while (y < HEIGHT)
-    {
-        mlx_put_pixel(session->mlx_window, x, y, floor_color);
-        y++;
-    }
-}
