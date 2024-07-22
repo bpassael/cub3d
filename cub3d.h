@@ -6,7 +6,7 @@
 /*   By: bperez-a <bperez-a@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 12:05:58 by bperez-a          #+#    #+#             */
-/*   Updated: 2024/07/11 13:40:18 by bperez-a         ###   ########.fr       */
+/*   Updated: 2024/07/22 10:31:51 by bperez-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,24 @@
 # define MOVE_STEP 0.1
 # define ROTAT_STEP 0.04
 # define PI 3.14159265
+
+#define TEXTURE_WIDTH 64
+#define TEXTURE_HEIGHT 64
+
+typedef struct s_texture {
+    mlx_texture_t *texture;
+    mlx_image_t   *image;
+} t_texture;
+
+typedef struct s_textures {
+    t_texture   north;
+    t_texture   south;
+    t_texture   west;
+    t_texture   east;
+} t_textures;
+
+
+
 
 
 
@@ -55,6 +73,33 @@ typedef	struct s_screen_matrix
 
 
 }				t_screen_matrix;
+
+
+typedef struct s_ray
+{
+    double cameraX;
+    double rayDirX;
+    double rayDirY;
+    int mapX;
+    int mapY;
+    double sideDistX;
+    double sideDistY;
+    double deltaDistX;
+    double deltaDistY;
+    double perpWallDist;
+    int stepX;
+    int stepY;
+    int hit;
+    int side;
+    int lineHeight;
+    int drawStart;
+    int drawEnd;
+    double wallX;
+    int texX;
+    int texNum;
+} t_ray;
+
+
 
 
 
@@ -117,6 +162,8 @@ typedef struct s_map
 	int			player_y;
 	char		player_dir;
 	t_player	*player;
+	t_textures  textures;
+
 
 
 }				t_map;
@@ -153,8 +200,26 @@ void    move_player_right(t_map *map, t_player *player);
 
 void    free_screen_matrix(t_screen_matrix *matrix);
 
-void    raycast(t_map *map, t_screen_matrix *matrix, t_session *session);
 
+
+void    raycast(t_map *map, t_screen_matrix *matrix, t_session *session);
+void    init_ray(t_map *map, t_ray *ray, int x);
+void    init_ray_step(t_map *map, t_ray *ray);
+void    perform_dda(t_map *map, t_ray *ray);
+void    calc_perp_wall_dist(t_map *map, t_ray *ray);
+void calc_wall_specs(t_ray *ray, int *drawStart, int *drawEnd, t_player *player);
+void    calc_wall_x(t_ray *ray, t_player *player);
+void    determine_texture(t_ray *ray);
+void    draw_vertical_line(t_session *session, t_ray *ray, int x);
+void    draw_ceiling(t_session *session, int x, int drawStart);
+void    draw_floor(t_session *session, int x, int drawEnd);
+void    draw_textured_wall(t_session *session, int x, int drawStart, int drawEnd, t_ray *ray);
+
+
+
+
+//Textures
+void    load_textures(mlx_t *mlx, t_map *map);
 
 
 
@@ -162,6 +227,7 @@ void    raycast(t_map *map, t_screen_matrix *matrix, t_session *session);
 int	create_trgb(unsigned char t, unsigned char r,
 				unsigned char g, unsigned char b);
 
+uint32_t create_rgb(uint8_t r, uint8_t g, uint8_t b);
 
 void	ft_error(char *message);
 

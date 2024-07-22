@@ -12,8 +12,8 @@ void    init_player_in_map(t_map *map)
         ft_error("Malloc failed in player init");
         return ;
     }
-    player_data->x_pos = map->player_x;
-    player_data->y_pos = map->player_y;
+    player_data->x_pos = map->player_x + 0.5;
+    player_data->y_pos = map->player_y + 0.5;
     player_data->move_step = MOVE_STEP;
     player_data->rotat_step = ROTAT_STEP;
 	player_data->map_x = (int)map->player_x;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bperez-a <bperez-a@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bperez-a <bperez-a@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 11:45:25 by bperez-a          #+#    #+#             */
-/*   Updated: 2024/07/16 09:49:34 by bperez-a         ###   ########.fr       */
+/*   Updated: 2024/07/22 10:40:01 by bperez-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	ft_hook(void *param)
 		printf("W is pressed\n");
 		move_player_forward(session->map, session->map->player);
 		raycast(session->map, session->matrix, session);
-		display_screen(session->matrix, session->mlx_window);
+		//display_screen(session->matrix, session->mlx_window);
 
 	}
 	if (mlx_is_key_down(session->mlx, MLX_KEY_S))
@@ -32,7 +32,7 @@ void	ft_hook(void *param)
 		move_player_backward(session->map, session->map->player);
 		raycast(session->map, session->matrix, session);
 		//update_screen(session->matrix, session->map);
-		display_screen(session->matrix, session->mlx_window);
+		//display_screen(session->matrix, session->mlx_window);
 	}
 	if (mlx_is_key_down(session->mlx, MLX_KEY_LEFT))
 	{
@@ -42,8 +42,7 @@ void	ft_hook(void *param)
 		// update degrees as well
 		rotate_player_left(session->map->player);
 		raycast(session->map, session->matrix, session);
-		
-		display_screen(session->matrix, session->mlx_window);
+		//display_screen(session->matrix, session->mlx_window);
 	}
 	if (mlx_is_key_down(session->mlx, MLX_KEY_RIGHT))
 	{
@@ -53,7 +52,7 @@ void	ft_hook(void *param)
 		// update degrees as well
 		rotate_player_right(session->map->player);
 		raycast(session->map, session->matrix, session);
-		display_screen(session->matrix, session->mlx_window);
+		//display_screen(session->matrix, session->mlx_window);
 	}
 
 	if (mlx_is_key_down(session->mlx, MLX_KEY_A))
@@ -61,14 +60,14 @@ void	ft_hook(void *param)
 		//printf("A is pressed\n");
 		move_player_left(session->map, session->map->player);
 		raycast(session->map, session->matrix, session);
-		display_screen(session->matrix, session->mlx_window);
+		//display_screen(session->matrix, session->mlx_window);
 	}
 	if (mlx_is_key_down(session->mlx, MLX_KEY_D))
 	{
 		//printf("D is pressed\n");
 		move_player_right(session->map, session->map->player);
 		raycast(session->map, session->matrix, session);
-		display_screen(session->matrix, session->mlx_window);
+		//display_screen(session->matrix, session->mlx_window);
 	}
 }
 
@@ -92,13 +91,16 @@ int main(int argc, char **argv)
 	session->matrix = matrix;
 	session->map = map_data;
 	session->mlx_window = image;
+	load_textures(mlx, map_data);
+
+
 
 
 
 	mlx_loop_hook(mlx, ft_hook, session);
 	mlx_loop(mlx);
 	mlx_terminate(mlx);
-	free_screen_matrix(matrix);
+	//free_screen_matrix(matrix);
 	return (0);
 };
 
