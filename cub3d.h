@@ -6,7 +6,7 @@
 /*   By: bperez-a <bperez-a@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 12:05:58 by bperez-a          #+#    #+#             */
-/*   Updated: 2024/07/22 17:53:21 by bperez-a         ###   ########.fr       */
+/*   Updated: 2024/07/23 14:54:15 by bperez-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -174,6 +174,8 @@ int	create_trgb(unsigned char t, unsigned char r,
 uint32_t create_rgb(uint8_t r, uint8_t g, uint8_t b);
 
 void	ft_error(char *message);
+
+void free_session(t_session *session);
 
 char	*open_file(char *path);
 t_map	*handle_input(char *path);

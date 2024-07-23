@@ -6,7 +6,7 @@
 /*   By: bperez-a <bperez-a@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 12:17:24 by bperez-a          #+#    #+#             */
-/*   Updated: 2024/06/17 18:28:21 by bperez-a         ###   ########.fr       */
+/*   Updated: 2024/07/23 15:13:49 by bperez-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,6 +132,7 @@ t_map *parse_map(char *input)
 		ft_error("Malloc failed");
 
 	populate_values(map_data, split_input);
+	ft_free_array(split_input);
 	return map_data;
 	
 	
@@ -145,10 +146,10 @@ char *open_file(char *path)
 
 	fd = open(path, O_RDONLY);
 	if (fd == -1)
-		ft_error("Failed to open file");
+		return (NULL);
 	buffer = malloc(100000);
 	if (buffer == NULL)
-		ft_error("Malloc failed");
+		return (NULL);
 	read_bytes = read(fd, buffer, 100000);
 	buffer[read_bytes] = '\0';
 	close(fd);
@@ -162,9 +163,23 @@ t_map	*handle_input(char *path)
 	char *input;
 
 	input = open_file(path);
+	if (input == NULL)
+	{
+		ft_error("Could not open file");
+		return (NULL);
+	}
 	map_data = parse_map(input);
+	if (map_data == NULL)
+	{
+		ft_error("Could not parse map");
+		return (NULL);
+	}
+	free(input);
 	if (check_validity(map_data) == false)
+	{
 		ft_error("Invalid map");
+		return (NULL);
+	}
 	replace_spaces(map_data);
 
 	return (map_data);
