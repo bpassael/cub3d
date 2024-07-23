@@ -6,7 +6,7 @@
 /*   By: bperez-a <bperez-a@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 11:45:25 by bperez-a          #+#    #+#             */
-/*   Updated: 2024/07/23 14:53:56 by bperez-a         ###   ########.fr       */
+/*   Updated: 2024/07/23 16:04:48 by bperez-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	main(int argc, char **argv)
 	raycast(session->map, session);
 	mlx_loop_hook(session->mlx, ft_hook, session);
 	mlx_loop(session->mlx);
-	free_session(session);
+	//free_session(session);
 	
 	return (0);
 };

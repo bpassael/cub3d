@@ -1,6 +1,3 @@
-segfault on quit (ESC)
-
-general function to free our structs (called on failed checks and at the end)
 
 leaks
 

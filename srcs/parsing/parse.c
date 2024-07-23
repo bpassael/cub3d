@@ -6,7 +6,7 @@
 /*   By: bperez-a <bperez-a@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 12:17:24 by bperez-a          #+#    #+#             */
-/*   Updated: 2024/07/23 15:13:49 by bperez-a         ###   ########.fr       */
+/*   Updated: 2024/07/23 15:21:06 by bperez-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ void populate_values(t_map *map_data, char **split_input)
 			map_data->floor_color_r = ft_atoi(split_color[0]);
 			map_data->floor_color_g = ft_atoi(split_color[1]);
 			map_data->floor_color_b = ft_atoi(split_color[2]);
+			free(split_color);
 		}
 		else if (ft_strncmp(*split_input, "C ", 2) == 0)
 		{
@@ -87,6 +88,7 @@ void populate_values(t_map *map_data, char **split_input)
 			map_data->ceiling_color_r = ft_atoi(split_color[0]);
 			map_data->ceiling_color_g = ft_atoi(split_color[1]);
 			map_data->ceiling_color_b = ft_atoi(split_color[2]);
+			free(split_color);
 		}
 		else if (ft_strlen(*split_input) == 0)
 		{
@@ -125,12 +127,18 @@ t_map *parse_map(char *input)
 	
 	map_data = malloc(sizeof(t_map));
 	if (map_data == NULL)
+	{
 		ft_error("Malloc failed");
+		return (NULL);
+	}
 	
 	split_input = ft_split(input, '\n');
 	if (split_input == NULL)
+	{
+		free(map_data);
 		ft_error("Malloc failed");
-
+		return (NULL);
+	}
 	populate_values(map_data, split_input);
 	ft_free_array(split_input);
 	return map_data;

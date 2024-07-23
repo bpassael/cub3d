@@ -6,7 +6,7 @@
 /*   By: bperez-a <bperez-a@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 13:29:51 by bperez-a          #+#    #+#             */
-/*   Updated: 2024/07/23 15:04:43 by bperez-a         ###   ########.fr       */
+/*   Updated: 2024/07/23 16:05:34 by bperez-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,5 +48,8 @@ void	ft_hook(void *param)
 		raycast(session->map, session);
 	}
 	if (mlx_is_key_down(session->mlx, MLX_KEY_ESCAPE))
+	{
 		free_session(session);
+		exit(0);
+	}
 }

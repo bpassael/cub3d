@@ -6,7 +6,7 @@
 /*   By: bperez-a <bperez-a@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 12:15:06 by bperez-a          #+#    #+#             */
-/*   Updated: 2024/07/23 15:11:56 by bperez-a         ###   ########.fr       */
+/*   Updated: 2024/07/23 16:05:56 by bperez-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,6 @@ void cleanup_textures(t_session *session)
     if (session->map->textures.east.image) mlx_delete_image(session->mlx, session->map->textures.east.image);
 }
 
-
-
 void free_map(t_map *map)
 {
 	char **map_ptr;
@@ -57,6 +55,8 @@ void free_session(t_session *session)
 		cleanup_textures(session);
 		free_map(session->map);
 	}
+	if (session->mlx_window)
+		mlx_delete_image(session->mlx, session->mlx_window);
 	if (session->mlx)
 		mlx_terminate(session->mlx);
 	free(session);
