@@ -6,7 +6,7 @@
 /*   By: bperez-a <bperez-a@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 12:05:58 by bperez-a          #+#    #+#             */
-/*   Updated: 2024/07/23 14:54:15 by bperez-a         ###   ########.fr       */
+/*   Updated: 2024/07/24 08:04:13 by bperez-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ typedef struct s_textures {
     t_texture   west;
     t_texture   east;
 } t_textures;
-
 
 
 typedef struct s_ray
@@ -128,6 +127,11 @@ typedef struct s_session
 
 
 void	ft_hook(void *param);
+
+
+
+void	ft_close_hook(void *param);
+
 
 
 void    init_player_in_map(t_map *map);

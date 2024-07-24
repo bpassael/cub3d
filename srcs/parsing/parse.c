@@ -6,7 +6,7 @@
 /*   By: bperez-a <bperez-a@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 12:17:24 by bperez-a          #+#    #+#             */
-/*   Updated: 2024/07/23 15:21:06 by bperez-a         ###   ########.fr       */
+/*   Updated: 2024/07/24 07:54:16 by bperez-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ void populate_values(t_map *map_data, char **split_input)
 			map_data->floor_color_r = ft_atoi(split_color[0]);
 			map_data->floor_color_g = ft_atoi(split_color[1]);
 			map_data->floor_color_b = ft_atoi(split_color[2]);
-			free(split_color);
+			ft_free_array(split_color);
 		}
 		else if (ft_strncmp(*split_input, "C ", 2) == 0)
 		{
@@ -88,7 +88,7 @@ void populate_values(t_map *map_data, char **split_input)
 			map_data->ceiling_color_r = ft_atoi(split_color[0]);
 			map_data->ceiling_color_g = ft_atoi(split_color[1]);
 			map_data->ceiling_color_b = ft_atoi(split_color[2]);
-			free(split_color);
+			ft_free_array(split_color);
 		}
 		else if (ft_strlen(*split_input) == 0)
 		{
