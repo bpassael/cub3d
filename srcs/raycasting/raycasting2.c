@@ -15,11 +15,11 @@
 void	calc_perp_wall_dist(t_map *map, t_ray *ray)
 {
 	if (ray->side == 0)
-		ray->perp_wall_dist = (ray->map_x - map->player->x_pos + (1 - ray->step_x)
-				/ 2) / ray->ray_dir_x;
+		ray->perp_wall_dist = (ray->map_x - map->player->x_pos + (1
+					- ray->step_x) / 2) / ray->ray_dir_x;
 	else
-		ray->perp_wall_dist = (ray->map_y - map->player->y_pos + (1 - ray->step_y)
-				/ 2) / ray->ray_dir_y;
+		ray->perp_wall_dist = (ray->map_y - map->player->y_pos + (1
+					- ray->step_y) / 2) / ray->ray_dir_y;
 }
 
 void	calc_wall_specs(t_ray *ray, int *draw_start, int *draw_end,
@@ -54,16 +54,16 @@ void	determine_texture(t_ray *ray)
 {
 	if (ray->side == 0)
 	{
-        if (ray->ray_dir_x > 0)
-            ray->tex_num = 2;
-        else
-            ray->tex_num = 3;
+		if (ray->ray_dir_x > 0)
+			ray->tex_num = 2;
+		else
+			ray->tex_num = 3;
 	}
 	else
 	{
-        if (ray->ray_dir_y < 0)
-            ray->tex_num = 0;
-        else
-            ray->tex_num = 1;
+		if (ray->ray_dir_y < 0)
+			ray->tex_num = 0;
+		else
+			ray->tex_num = 1;
 	}
 }

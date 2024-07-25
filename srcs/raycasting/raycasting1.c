@@ -47,7 +47,8 @@ void	init_ray_step(t_map *map, t_ray *ray)
 	if (ray->ray_dir_x < 0)
 	{
 		ray->step_x = -1;
-		ray->side_dist_x = (map->player->x_pos - ray->map_x) * ray->delta_dist_x;
+		ray->side_dist_x = (map->player->x_pos - ray->map_x)
+			* ray->delta_dist_x;
 	}
 	else
 	{
@@ -58,7 +59,8 @@ void	init_ray_step(t_map *map, t_ray *ray)
 	if (ray->ray_dir_y < 0)
 	{
 		ray->step_y = -1;
-		ray->side_dist_y = (map->player->y_pos - ray->map_y) * ray->delta_dist_y;
+		ray->side_dist_y = (map->player->y_pos - ray->map_y)
+			* ray->delta_dist_y;
 	}
 	else
 	{

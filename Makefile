@@ -8,12 +8,13 @@ LIBFT = libft
 LIBFT_LIB = $(LIBFT)/libft.a
 
 SRC_DIR = srcs
-SRC_FILES = main.c error.c \
-			parsing/checks.c parsing/parse.c \
+SRC_FILES = main.c error_free.c \
+			checking/check_map.c checking/check_utils.c checking/check.c \
+			parsing/parse.c parsing/parse_replace_spaces.c parsing/parse_populate_values.c  parsing/parse_utils.c \
 			movement/mov_hook.c movement/mov_move.c movement/mov_rotate.c movement/mov_utils.c \
 			init/init_player.c init/init_textures.c \
 			raycasting/raycasting1.c raycasting/raycasting2.c \
-			drawing/drawing.c
+			drawing/draw_line.c  drawing/draw_wall.c drawing/draw_utils.c
 SRC_PATHS = $(addprefix $(SRC_DIR)/,$(SRC_FILES))
 OBJ_DIR = obj
 OBJ_FILES = $(SRC_FILES:%.c=$(OBJ_DIR)/%.o)
@@ -30,6 +31,7 @@ all: $(OBJ_DIR) $(NAME)
 
 $(OBJ_DIR):
 	mkdir -p $(OBJ_DIR)
+	mkdir -p $(OBJ_DIR)/checking
 	mkdir -p $(OBJ_DIR)/parsing
 	mkdir -p $(OBJ_DIR)/init
 	mkdir -p $(OBJ_DIR)/movement

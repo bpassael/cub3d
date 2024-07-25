@@ -6,40 +6,16 @@
 /*   By: bperez-a <bperez-a@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 11:45:25 by bperez-a          #+#    #+#             */
-/*   Updated: 2024/07/24 08:02:40 by bperez-a         ###   ########.fr       */
+/*   Updated: 2024/07/25 21:19:15 by bperez-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-
-
-
-int	main(int argc, char **argv)
+void	launch_game(t_session *session)
 {
-	t_session *session;
-
-	if (argc != 2)
-	{
-		ft_error("Invalid number of arguments");
-		return (1);
-	}
-	session = malloc(sizeof(t_session));
-	
-	if (!session)
-	{
-		ft_error("Malloc failed");
-		return (1);
-	}
-	
-	session->map = handle_input(argv[1]);
-	if (!session->map)
-	{
-		free_session(session);
-		return (1);
-	}
 	init_player_in_map(session->map);
-	session->mlx = mlx_init(WIDTH, HEIGHT, "WINDOW", true);
+	session->mlx = mlx_init(WIDTH, HEIGHT, "cub3d", true);
 	session->mlx_window = mlx_new_image(session->mlx, WIDTH, HEIGHT);
 	mlx_image_to_window(session->mlx, session->mlx_window, 0, 0);
 	load_textures(session->mlx, session->map);
@@ -47,6 +23,29 @@ int	main(int argc, char **argv)
 	mlx_loop_hook(session->mlx, ft_hook, session);
 	mlx_close_hook(session->mlx, ft_close_hook, session);
 	mlx_loop(session->mlx);
-	
+}
+
+int	main(int argc, char **argv)
+{
+	t_session	*session;
+
+	if (argc != 2)
+	{
+		ft_error("Invalid number of arguments");
+		return (1);
+	}
+	session = malloc(sizeof(t_session));
+	if (!session)
+	{
+		ft_error("Malloc failed");
+		return (1);
+	}
+	session->map = handle_input(argv[1]);
+	if (!session->map)
+	{
+		free_session(session);
+		return (1);
+	}
+	launch_game(session);
 	return (0);
-};
+}
