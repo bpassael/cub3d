@@ -24,7 +24,7 @@
 
 # define WIDTH 1400
 # define HEIGHT 1000
-# define MOVE_STEP 0.1
+# define MOVE_STEP 0.07
 # define ROTAT_STEP 0.04
 # define PI 3.14159265
 
