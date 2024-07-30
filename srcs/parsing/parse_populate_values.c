@@ -6,7 +6,7 @@
 /*   By: bperez-a <bperez-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 18:01:42 by bperez-a          #+#    #+#             */
-/*   Updated: 2024/07/30 13:09:25 by bperez-a         ###   ########.fr       */
+/*   Updated: 2024/07/30 13:34:26 by bperez-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,13 @@ int	process_map_elements(t_map *map_data, char ***split_input)
 {
 	while (**split_input && !is_map_start(**split_input))
 	{
-		if (ft_strncmp(**split_input, "NO ", 3) == 0)
+		if (ft_strncmp(**split_input, "SO ", 3) == 0)
 			map_data->no_texture_path = ft_strdup(**split_input + 3);
-		else if (ft_strncmp(**split_input, "SO ", 3) == 0)
+		else if (ft_strncmp(**split_input, "NO ", 3) == 0)
 			map_data->so_texture_path = ft_strdup(**split_input + 3);
-		else if (ft_strncmp(**split_input, "WE ", 3) == 0)
-			map_data->we_texture_path = ft_strdup(**split_input + 3);
 		else if (ft_strncmp(**split_input, "EA ", 3) == 0)
+			map_data->we_texture_path = ft_strdup(**split_input + 3);
+		else if (ft_strncmp(**split_input, "WE ", 3) == 0)
 			map_data->ea_texture_path = ft_strdup(**split_input + 3);
 		else if (ft_strncmp(**split_input, "F ", 2) == 0)
 			process_color(map_data, **split_input + 2, 'F');

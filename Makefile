@@ -6,6 +6,7 @@ RM = rm -f
 
 LIBFT = libft
 LIBFT_LIB = $(LIBFT)/libft.a
+LIBFT_HEADER = $(LIBFT)/libft.h
 
 SRC_DIR = srcs
 SRC_FILES = main.c error_free.c \
@@ -38,7 +39,7 @@ $(OBJ_DIR):
 	mkdir -p $(OBJ_DIR)/raycasting
 	mkdir -p $(OBJ_DIR)/drawing
 
-$(NAME): $(LIBFT_LIB) $(OBJ_FILES)
+$(NAME): $(OBJ_FILES) $(LIBFT_LIB)
 	$(CC) $(CFLAGS) -o $(NAME) $(OBJ_FILES) \
 		-L$(LIBFT) -lft \
 		MLX42/libmlx42.a \
@@ -46,10 +47,10 @@ $(NAME): $(LIBFT_LIB) $(OBJ_FILES)
 		$(OPENGL_LIB) $(DL_LIB) $(PTHREAD_LIB) $(MATH_LIB) $(X11_LIB) \
 		-I$(LIBFT) -Iinclude -IMLX42
 
-$(LIBFT_LIB):
+$(LIBFT_LIB): $(LIBFT_HEADER)
 	$(MAKE) -C $(LIBFT)
 
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c cub3d.h
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c cub3d.h $(LIBFT_HEADER)
 	$(CC) $(CFLAGS) -I$(LIBFT) -Iinclude -IMLX42 -c $< -o $@
 
 clean:
