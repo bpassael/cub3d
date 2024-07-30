@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bperez-a <bperez-a@student.42bangkok.co    +#+  +:+       +#+        */
+/*   By: bperez-a <bperez-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 16:35:32 by bperez-a          #+#    #+#             */
-/*   Updated: 2024/07/25 16:40:40 by bperez-a         ###   ########.fr       */
+/*   Updated: 2024/07/30 11:52:57 by bperez-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ bool	check_map(t_map *map_data)
 bool	check_map_content(t_map *map_data, int *player_count)
 {
 	int	i;
-	int	j;
 
 	i = 0;
 	while (map_data->map[i] != NULL)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bperez-a <bperez-a@student.42bangkok.co    +#+  +:+       +#+        */
+/*   By: bperez-a <bperez-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 11:45:25 by bperez-a          #+#    #+#             */
-/*   Updated: 2024/07/25 21:19:15 by bperez-a         ###   ########.fr       */
+/*   Updated: 2024/07/30 12:02:37 by bperez-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	main(int argc, char **argv)
 	session->map = handle_input(argv[1]);
 	if (!session->map)
 	{
-		free_session(session);
+		free(session);
 		return (1);
 	}
 	launch_game(session);

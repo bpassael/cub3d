@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bperez-a <bperez-a@student.42bangkok.co    +#+  +:+       +#+        */
+/*   By: bperez-a <bperez-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 12:17:24 by bperez-a          #+#    #+#             */
-/*   Updated: 2024/07/25 21:13:35 by bperez-a         ###   ########.fr       */
+/*   Updated: 2024/07/30 11:54:01 by bperez-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ t_map	*handle_input(char *path)
 	if (check_validity(map_data) == false)
 	{
 		ft_error("Invalid map");
+		free_map(map_data);
 		return (NULL);
 	}
 	replace_spaces(map_data);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error_free.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bperez-a <bperez-a@student.42bangkok.co    +#+  +:+       +#+        */
+/*   By: bperez-a <bperez-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 12:15:06 by bperez-a          #+#    #+#             */
-/*   Updated: 2024/07/25 21:17:25 by bperez-a         ###   ########.fr       */
+/*   Updated: 2024/07/30 12:02:45 by bperez-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,13 +41,20 @@ void	cleanup_textures(t_session *session)
 
 void	free_map(t_map *map)
 {
-	ft_free_array(map->map);
-	free(map->player);
-	free(map->no_texture_path);
-	free(map->so_texture_path);
-	free(map->we_texture_path);
-	free(map->ea_texture_path);
-	free(map);
+	if (map)
+	{	
+		if (map->map)
+			ft_free_array(map->map);
+		if (map->no_texture_path)
+			free(map->no_texture_path);
+		if (map->so_texture_path)
+			free(map->so_texture_path);
+		if (map->we_texture_path)
+			free(map->we_texture_path);
+		if (map->ea_texture_path)
+			free(map->ea_texture_path);
+		free(map);
+	}
 }
 
 void	free_session(t_session *session)
@@ -55,6 +62,8 @@ void	free_session(t_session *session)
 	if (session->map)
 	{
 		cleanup_textures(session);
+		if (session->map->player)
+			free(session->map->player);
 		free_map(session->map);
 	}
 	if (session->mlx_window)
