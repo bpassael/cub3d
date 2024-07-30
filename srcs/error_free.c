@@ -6,7 +6,7 @@
 /*   By: bperez-a <bperez-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 12:15:06 by bperez-a          #+#    #+#             */
-/*   Updated: 2024/07/30 12:02:45 by bperez-a         ###   ########.fr       */
+/*   Updated: 2024/07/30 13:09:39 by bperez-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	ft_error(char *message)
 {
-	ft_putstr_fd("Error\n", 2);
 	ft_putstr_fd(message, 2);
 	ft_putchar_fd('\n', 2);
 }
@@ -42,7 +41,7 @@ void	cleanup_textures(t_session *session)
 void	free_map(t_map *map)
 {
 	if (map)
-	{	
+	{
 		if (map->map)
 			ft_free_array(map->map);
 		if (map->no_texture_path)

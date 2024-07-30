@@ -6,7 +6,7 @@
 /*   By: bperez-a <bperez-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 17:54:55 by bperez-a          #+#    #+#             */
-/*   Updated: 2024/07/30 12:38:14 by bperez-a         ###   ########.fr       */
+/*   Updated: 2024/07/30 13:08:53 by bperez-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	pad_lines_to_max_width(char **map, size_t max_width)
 {
 	char	*line;
 	size_t	line_len;
-	char 	*tmp;
+	char	*tmp;
 
 	while (*map)
 	{

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bperez-a <bperez-a@student.42bangkok.co    +#+  +:+       +#+        */
+/*   By: bperez-a <bperez-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 12:05:58 by bperez-a          #+#    #+#             */
-/*   Updated: 2024/07/25 21:33:26 by bperez-a         ###   ########.fr       */
+/*   Updated: 2024/07/30 12:45:07 by bperez-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,9 +157,9 @@ size_t				find_max_width(char **map);
 
 // parse_populate_values.c
 
-void				populate_values(t_map *map_data, char **split_input);
+int					populate_values(t_map *map_data, char **split_input);
 void				init_map_data(t_map *map_data);
-void				process_map_elements(t_map *map_data, char ***split_input);
+int					process_map_elements(t_map *map_data, char ***split_input);
 void				process_color(t_map *map_data, char *color_str, char type);
 void				extract_map(t_map *map_data, char **split_input);
 

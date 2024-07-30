@@ -6,7 +6,7 @@
 /*   By: bperez-a <bperez-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 11:45:25 by bperez-a          #+#    #+#             */
-/*   Updated: 2024/07/30 12:02:37 by bperez-a         ###   ########.fr       */
+/*   Updated: 2024/07/30 13:01:00 by bperez-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,13 @@ int	main(int argc, char **argv)
 
 	if (argc != 2)
 	{
-		ft_error("Invalid number of arguments");
+		ft_error("Error\nInvalid number of arguments");
 		return (1);
 	}
 	session = malloc(sizeof(t_session));
 	if (!session)
 	{
-		ft_error("Malloc failed");
+		ft_error("Error\nMalloc failed");
 		return (1);
 	}
 	session->map = handle_input(argv[1]);

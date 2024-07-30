@@ -6,7 +6,7 @@
 /*   By: bperez-a <bperez-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 12:17:24 by bperez-a          #+#    #+#             */
-/*   Updated: 2024/07/30 11:54:01 by bperez-a         ###   ########.fr       */
+/*   Updated: 2024/07/30 13:04:28 by bperez-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,12 @@ t_map	*parse_map(char *input)
 		ft_error("Malloc failed");
 		return (NULL);
 	}
-	populate_values(map_data, split_input);
+	if (populate_values(map_data, split_input) == -1)
+	{
+		ft_free_array(split_input);
+		free(map_data);
+		return (NULL);
+	}
 	ft_free_array(split_input);
 	return (map_data);
 }
@@ -61,19 +66,20 @@ t_map	*handle_input(char *path)
 	input = open_file(path);
 	if (input == NULL)
 	{
-		ft_error("Could not open file");
+		ft_error("Error\nCould not open file");
 		return (NULL);
 	}
 	map_data = parse_map(input);
 	if (map_data == NULL)
 	{
-		ft_error("Could not parse map");
+		ft_error("Error\nCould not parse map");
+		free(input);
 		return (NULL);
 	}
 	free(input);
 	if (check_validity(map_data) == false)
 	{
-		ft_error("Invalid map");
+		ft_error("Error\nInvalid map");
 		free_map(map_data);
 		return (NULL);
 	}

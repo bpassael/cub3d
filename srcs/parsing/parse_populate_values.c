@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_populate_values.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bperez-a <bperez-a@student.42bangkok.co    +#+  +:+       +#+        */
+/*   By: bperez-a <bperez-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 18:01:42 by bperez-a          #+#    #+#             */
-/*   Updated: 2024/07/25 21:14:23 by bperez-a         ###   ########.fr       */
+/*   Updated: 2024/07/30 13:09:25 by bperez-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	init_map_data(t_map *map_data)
 	map_data->ea_texture_path = NULL;
 }
 
-void	process_map_elements(t_map *map_data, char ***split_input)
+int	process_map_elements(t_map *map_data, char ***split_input)
 {
 	while (**split_input && !is_map_start(**split_input))
 	{
@@ -43,9 +43,16 @@ void	process_map_elements(t_map *map_data, char ***split_input)
 		else if (ft_strncmp(**split_input, "C ", 2) == 0)
 			process_color(map_data, **split_input + 2, 'C');
 		else if (**split_input[0] != '\0')
+		{
 			ft_error("Invalid map element");
+			free(map_data->no_texture_path);
+			free(map_data->so_texture_path);
+			free(map_data->we_texture_path);
+			return (free(map_data->ea_texture_path), -1);
+		}
 		(*split_input)++;
 	}
+	return (0);
 }
 
 void	process_color(t_map *map_data, char *color_str, char type)
@@ -95,12 +102,17 @@ void	extract_map(t_map *map_data, char **split_input)
 	map_data->map[map_lines_count] = NULL;
 }
 
-void	populate_values(t_map *map_data, char **split_input)
+int	populate_values(t_map *map_data, char **split_input)
 {
 	init_map_data(map_data);
-	process_map_elements(map_data, &split_input);
+	if (process_map_elements(map_data, &split_input) == -1)
+		return (-1);
 	if (*split_input)
 		extract_map(map_data, split_input);
 	else
+	{
 		ft_error("No map data found after elements");
+		return (-1);
+	}
+	return (0);
 }
