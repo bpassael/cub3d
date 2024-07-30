@@ -3,8 +3,8 @@ SO ./textures/Bricks.png
 WE ./textures/Dirt.png
 EA ./textures/Coal.png
 
-F 220,100,0
-C 225,30,0
+F 20,100,20
+C 25,30,200
 
 111111111111111111111111111111
 100001000000000000010000000001

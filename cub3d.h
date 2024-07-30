@@ -22,8 +22,8 @@
 # include <stdlib.h>
 # include <unistd.h>
 
-# define WIDTH 1400
-# define HEIGHT 1000
+# define WIDTH 1000
+# define HEIGHT 800
 # define MOVE_STEP 0.07
 # define ROTAT_STEP 0.04
 # define PI 3.14159265
